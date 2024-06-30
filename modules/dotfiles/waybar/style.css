@@ -80,20 +80,20 @@ tooltip label {
 
 #memory {
     padding-right: 0px;
-    color: #90A959;
+    color: #E1E1E1;
     border-radius: 3px 0px 0px 3px;
     padding-right: 5px;
 }
 
 #disk {
     padding-right: 0px;
-    color: #90A959;
+    color: #E1E1E1;
     border-radius: 0px 3px 3px 0px;
 }
 
 #network {
     margin-left: 5px;
-    color: #AA759F;
+    color: #E1E1E1;
 }
 
 /* Modules center */
@@ -105,7 +105,7 @@ tooltip label {
 }
 
 #workspaces button.active {
-    color: #b84b07;
+    color: #F4BF75;
 }
 
 #workspaces button.focused {
@@ -137,29 +137,29 @@ tooltip label {
 /* Modules right */
 
 #battery {
-    color: #AA759F;
+    color: #E1E1E1;
 }
 
 #bluetooth {
     margin-left: 5px;
     border-radius: 3px 0px 0px 3px;
-    color: #90A959;
+    color: #E1E1E1;
 } 
 
 #pulseaudio {
     border-radius: 0px 0px 0px 0px;
-    color: #90A959;
+    color: #E1E1E1;
 }
 
 #pulseaudio.microphone {
-    color: #90A959;
+    color: #E1E1E1;
     margin-left: 0px;
     border-radius: 0px 3px 3px 0px;
 }
 
 #backlight {
     margin-left: 5px;
-    color: #F4BF75;
+    color: #E1E1E1;
 }
 
 #clock {
