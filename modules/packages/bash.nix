@@ -18,10 +18,10 @@
       l = "ls -CF";
       vim = "nvim";
       vi = "nvim";
+      rebuild = "home-manager switch --flake /home/$(whoami)/Github/home#$(whoami)";
       # Programs
       code = "code --ozone-platform=wayland";
       notes = "obsidian --ozone-platform=wayland";
-      rebuild = "home-manager switch --flake /home/$(whoami)/Github/nix#$(whoami)";
       mqtt = "/home/$(whoami)/Apps/MQTTExplorer.AppImage";
       # SSH
       ssh-rita = "ssh -i ~/.ssh/sasha_d_ocean root@192.168.100.5";
