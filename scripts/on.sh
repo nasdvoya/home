@@ -12,7 +12,7 @@ file_name=$(echo "$1" | tr ' ' '-')
 formatted_file_name=$(date "+%Y-%m-%d")_${file_name}.md
 
 # Change to the specified directory, or exit if it fails
-cd "${HOME}/github/notes" || exit
+cd "${HOME}/Github/notes" || exit
 
 touch "inbox/${formatted_file_name}"
 nvim "inbox/${formatted_file_name}"
