@@ -22,7 +22,7 @@ return {
     workspaces = {
       {
         name = "work",
-        path = "~/github/notes",
+        path = "~/Github/notes",
       },
     },
 
