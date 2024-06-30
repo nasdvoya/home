@@ -27,10 +27,23 @@ nnoremap("<leader>z", "<cmd>wq<cr>", { silent = false })
 
 -- New
 -- vim.api.nvim_set_keymap('n', '<leader>sr', ':%s/<C-R><C-W>//g<Left><Left>', { noremap = true, silent = true, desc = 'Substitute word under cursor globally' })
+-- Obsidian
 vim.keymap.set("n", "<leader>on", function()
   vim.cmd("ObsidianTemplate note")
   vim.cmd("1,/^\\S/s/^\\n\\{1,}//e")
 end, { desc = '[O]bsidian [n]ote' })
+
+-- Keymap to grep search obsidian notes
+vim.keymap.set("n", "<leader>sog", function()
+  local query = vim.fn.input("Obsidian Search Query: ")
+  vim.cmd("ObsidianSearch " .. query)
+end, { desc = '[S]earch [o]bsidian notes by [g]rep ' })
+
+-- Keymap to search obsidian notes
+vim.keymap.set("n", "<leader>son", function()
+  vim.cmd("ObsidianQuickSwitch")
+end, { desc = '[S]earch [o]bsidian notes' })
+
 
 -- Navigation
 nnoremap('<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle file tree [e]explorer' })
