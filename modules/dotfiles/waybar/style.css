@@ -1,0 +1,174 @@
+* {
+    border: none;
+    border-radius: 3px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 10px;
+    padding: 0px;
+    margin: 0px;
+}
+
+windowdsaeDP-1 * { font-size: 15px; }
+
+window#waybar {
+    background-color: rgba(21, 21, 21, 0.5);
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+tooltip {
+    background: #151515;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #E1E1E1;
+    padding: 10px;
+    border-style: solid;
+}
+
+tooltip label {
+    color: #E1E1E1;
+}
+
+
+#custom-weather,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#bluetooth,
+#temperature,
+#workspaces,
+#tray,
+#cpu,
+#memory,
+#disk,
+#custom-chatgpt,
+#backlight {
+    background: transparent;
+    opacity: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: #919191;
+}
+
+/* Modules left */
+
+#temperature {
+    margin-left: 5px;
+    color: #E1E1E1;
+    border-radius: 3px 0px 0px 3px;
+    padding-right: 10px;
+}
+
+#temperature.critical {
+    color: #b46958;
+    border-radius: 3px 0px 0px 3px;
+    padding-right: 10px;
+}
+
+#cpu {
+    margin-right: 5px;
+    color: #E1E1E1;
+    border-radius: 0px 3px 3px 0px;
+}
+
+#memory {
+    padding-right: 0px;
+    color: #90A959;
+    border-radius: 3px 0px 0px 3px;
+    padding-right: 5px;
+}
+
+#disk {
+    padding-right: 0px;
+    color: #90A959;
+    border-radius: 0px 3px 3px 0px;
+}
+
+#network {
+    margin-left: 5px;
+    color: #AA759F;
+}
+
+/* Modules center */
+
+#workspaces button {
+    color: #E1E1E1;
+    margin-right: 5px;
+    padding-right: 5px;
+}
+
+#workspaces button.active {
+    color: #b84b07;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+    background: transparent;
+    border-radius: 0px;
+}
+
+#workspaces button.urgent {
+    color: #b46958;
+    background: transparent;
+}
+
+#workspaces button:hover {
+    color: #E1E1E1;
+    background: transparent;
+    box-shadow: none;
+    text-shadow: none; 
+    border-color: transparent;
+}
+
+#workspaces {
+    background: transparent;
+    margin-left: 10px;
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+/* Modules right */
+
+#battery {
+    color: #AA759F;
+}
+
+#bluetooth {
+    margin-left: 5px;
+    border-radius: 3px 0px 0px 3px;
+    color: #90A959;
+} 
+
+#pulseaudio {
+    border-radius: 0px 0px 0px 0px;
+    color: #90A959;
+}
+
+#pulseaudio.microphone {
+    color: #90A959;
+    margin-left: 0px;
+    border-radius: 0px 3px 3px 0px;
+}
+
+#backlight {
+    margin-left: 5px;
+    color: #F4BF75;
+}
+
+#clock {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #E1E1E1;
+}
+
+/* Not always there */
+#tray {
+    margin-right: 5px;
+}
