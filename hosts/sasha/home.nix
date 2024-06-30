@@ -29,12 +29,12 @@ in
     inputs.sops-nix.homeManagerModules.sops
   ];
   # systemd.user.services.mbsync.Unit.After = [ "sops-nix.service" ];
-  # sops = {
-  #   defaultSopsFile = ../../secrets/secrets.yaml;
-  #   defaultSopsFormat = "yaml";
-  #   age.keyFile = "/home/user/.config/sops/age/keys.txt";
-  #   #secrets."myservice/my_subdir/my_secret" = { };
-  # };
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/user/.config/sops/age/keys.txt";
+    #secrets."myservice/my_subdir/my_secret" = { };
+  };
 
   fonts.fontconfig.enable = true;
   home.sessionVariables = {
