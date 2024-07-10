@@ -16,6 +16,13 @@
         };
         condition = "gitdir:~/Work/";
       }
+      # Not working...
+      { contents = { 
+          user = { email = "sashawork@sashawork.org"; }; 
+          core = { sshCommand = "ssh -i ~/.ssh/sasha_community"; };
+        };
+        condition = "gitdir:~/Github/CorefluxCommunity";
+      }
     ];
   };
 }
