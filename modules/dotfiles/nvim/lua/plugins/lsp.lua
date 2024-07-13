@@ -20,12 +20,12 @@ return {
     local servers = {
       rust_analyzer = {},
       nil_ls = {},
-      -- omnisharp = {
-      --   enable_roslyn_analysers = true,
-      --   enable_import_completion = true,
-      --   organize_imports_on_format = true,
-      --   filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props' },
-      -- },
+      omnisharp = {
+        enable_roslyn_analysers = true,
+        enable_import_completion = true,
+        organize_imports_on_format = true,
+        filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props' },
+      },
       lua_ls = {
         Lua = {
           workspace = { checkThirdParty = false },
