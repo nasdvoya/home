@@ -7,11 +7,13 @@ return {
     { 'folke/neodev.nvim', }
   },
   config = function()
-    local map_lsp_keybinds = require("user.keymaps").map_lsp_keybinds
+    local keymaps = require("user.keymaps")
     local on_attach = function(_, buffer_number)
-      map_lsp_keybinds(buffer_number)
-
-      -- Create a command `:Format` local to the LSP buffer
+      if _.name == "omnisharp" then
+        keymaps.map_omnisharp_keybinds(buffer_number)
+      else
+        keymaps.map_default_lsp_keybinds(buffer_number)
+      end
       vim.api.nvim_buf_create_user_command(buffer_number, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })

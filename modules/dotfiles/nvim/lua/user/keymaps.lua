@@ -148,40 +148,46 @@ nnoremap("<leader>ss", function()
   }))
 end, { desc = "[s]earch [s]pelling suggestions" })
 
-M.map_lsp_keybinds = function(buffer_number)
+-- LSP keybindings
+M.map_common_lsp_keybinds = function(buffer_number)
   nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [r]e[n]ame", buffer = buffer_number })
   nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [c]ode [a]ction", buffer = buffer_number })
-  nnoremap("gd", vim.lsp.buf.definition, { desc = "LSP: [g]oto [d]efinition", buffer = buffer_number })
 
-  -- Telescope LSP keybinds --
-  nnoremap(
-    "gr",
-    require("telescope.builtin").lsp_references,
-    { desc = "LSP: [G]oto [R]eferences", buffer = buffer_number }
-  )
-  nnoremap(
-    "gi",
-    require("telescope.builtin").lsp_implementations,
-    { desc = "LSP: [G]oto [I]mplementation", buffer = buffer_number }
-  )
-  nnoremap(
-    "<leader>bs",
-    require("telescope.builtin").lsp_document_symbols,
-    { desc = "LSP: [B]uffer [S]ymbols", buffer = buffer_number }
-  )
-  nnoremap(
-    "<leader>ps",
-    require("telescope.builtin").lsp_workspace_symbols,
-    { desc = "LSP: [P]roject [S]ymbols", buffer = buffer_number }
-  )
+  -- Telescope LSP keybinds
+  nnoremap("<leader>bs", require("telescope.builtin").lsp_document_symbols,
+    { desc = "LSP: [B]uffer [S]ymbols", buffer = buffer_number })
+  nnoremap("<leader>ps", require("telescope.builtin").lsp_workspace_symbols,
+    { desc = "LSP: [P]roject [S]ymbols", buffer = buffer_number })
 
   -- See `:help K` for why this keymap
   nnoremap("K", vim.lsp.buf.hover, { desc = "LSP: Hover Documentation", buffer = buffer_number })
   nnoremap("<leader>k", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
   inoremap("<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
+
   -- Lesser used LSP functionality
   nnoremap("gD", vim.lsp.buf.declaration, { desc = "LSP: [g]oto [d]eclaration", buffer = buffer_number })
+end
+
+M.map_default_lsp_keybinds = function(buffer_number)
+  M.map_common_lsp_keybinds(buffer_number)
+  nnoremap("gd", vim.lsp.buf.definition, { desc = "LSP: [g]oto [d]efinition", buffer = buffer_number })
+  nnoremap("gr", require("telescope.builtin").lsp_references,
+    { desc = "LSP: [G]oto [R]eferences", buffer = buffer_number })
+  nnoremap("gi", require("telescope.builtin").lsp_implementations,
+    { desc = "LSP: [G]oto [I]mplementation", buffer = buffer_number })
   nnoremap("td", vim.lsp.buf.type_definition, { desc = "LSP: [t]ype [d]efinition", buffer = buffer_number })
+end
+
+M.map_omnisharp_keybinds = function(buffer_number)
+  M.map_common_lsp_keybinds(buffer_number)
+  nnoremap("gd", "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>",
+    { desc = "LSP: [g]oto [d]efinition", buffer = buffer_number })
+  nnoremap("gr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>",
+    { desc = "LSP: [G]oto [R]eferences", buffer = buffer_number })
+  nnoremap("gi", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",
+    { desc = "LSP: [G]oto [I]mplementation", buffer = buffer_number })
+  nnoremap("<leader>D", "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>",
+    { desc = "LSP: [t]ype [d]efinition", buffer = buffer_number })
 end
 
 -- Obsidian
