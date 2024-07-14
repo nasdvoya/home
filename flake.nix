@@ -32,6 +32,7 @@
           inherit pkgs;
           modules = [ ./hosts/sasha/home.nix ];
           extraSpecialArgs = { inherit inputs; };
+          
           # to pass through arguments to home.nix
         };
       };
