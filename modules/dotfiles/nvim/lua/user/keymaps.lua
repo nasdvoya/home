@@ -129,7 +129,7 @@ end, { desc = "Search [g]it [f]iles" })
 
 -- Telescope keybinds
 local telescope_b = require('telescope.builtin')
-nnoremap('<leader>st', '<cmd>TodoTelescope<cr>', { desc = '[?] [S]earch todo notes' })
+nnoremap('<leader>st', '<cmd>TodoTelescope<cr>', { desc = '[S]earch todo notes' })
 nnoremap('<leader>?', telescope_b.oldfiles, { desc = "[?] Find recently opened files" })
 nnoremap('<leader><space>', telescope_b.buffers, { desc = "[S]earch Open [b]uffers" })
 nnoremap('<leader>sh', telescope_b.help_tags, { desc = "[S]earch [h]elp" })
@@ -251,7 +251,7 @@ end, { expr = true, silent = true, desc = "AI chat accept" })
 
 nnoremap("<leader>a", function()
   return vim.fn["codeium#Chat"]()
-end, { expr = true, silent = true, desc = "AI chat" })
+end, { expr = true, silent = true, desc = " AI chat" })
 
 -- Navigation
 nnoremap('<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle file tree [e]explorer' })
@@ -265,15 +265,12 @@ M.common_lsp = function(buffer_number)
   nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [a]ction", buffer = buffer_number })
 
   -- Telescope LSP keybinds
-  --
-  nnoremap("<leader>bs", require("telescope.builtin").lsp_document_symbols,
+  nnoremap("<leader>cs", require("telescope.builtin").lsp_document_symbols,
     { desc = "LSP: [B]uffer [S]ymbols", buffer = buffer_number })
-  nnoremap("<leader>ps", require("telescope.builtin").lsp_workspace_symbols,
+  nnoremap("<leader>cps", require("telescope.builtin").lsp_workspace_symbols,
     { desc = "LSP: [P]roject [S]ymbols", buffer = buffer_number })
   -- See `:help K` for why this keymap
-  nnoremap("K", vim.lsp.buf.hover, { desc = "LSP: Hover Documentation", buffer = buffer_number })
-  nnoremap("<leader>k", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
-  inoremap("<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
+  nnoremap("<leader>cd", vim.lsp.buf.hover, { desc = "LSP: [C]ode [d]ocumentation", buffer = buffer_number })
 
   -- Lesser used LSP functionality
   nnoremap("gD", vim.lsp.buf.declaration, { desc = "LSP: [G]oto [d]eclaration", buffer = buffer_number })
@@ -322,18 +319,25 @@ end, { desc = '[S]earch [o]bsidian notes' })
 
 -- WhichKey
 M.which_key = function(wk)
-  wk.register({
-    ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-    ['<leader>d'] = { name = '[D]iagnostic and [d]ebugger', _ = 'which_key_ignore' },
-    ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-    ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
-    ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-    ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-    ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-    ['<leader>cr'] = { name = '[R]un [c]ode', _ = 'which_key_ignore' },
-    ['<leader>ca'] = { name = '[C]ode [a]ction', _ = 'which_key_ignore' },
-    ['<leader>o'] = { name = '[O]bsidian and [O]il', _ = 'which_key_ignore' },
-    ['<leader>l'] = { name = '[L]azy git', _ = 'which_key_ignore' },
+  wk.add({
+    -- Top-level groups
+    { "<leader>c",        group = "Code" },
+    { "<leader>so",       group = "Search [O]bsidian notes" },
+    { "<leader>d",        group = "Diagnostic" },
+    { "<leader>g",        group = "Git" },
+    { "<leader>gt",       group = "Git [T]oggles" },
+    { "<leader>h",        group = "Harpoon" },
+    { "<leader>r",        group = "Rename" },
+    { "<leader>s",        group = "Search" },
+    { "<leader>o",        group = "Obsidian and oil" },
+    { "<leader>l",        group = "Lazy git" },
+    -- hidden
+    { "<leader>q",        hidden = true },
+    { "<leader>f",        hidden = true },
+    { "<leader><leader>", hidden = true },
+    { "<leader>w",        hidden = true },
+    { "<leader>z",        hidden = true },
+
   })
 end
 
@@ -369,31 +373,31 @@ M.gitsigns = function(gs, bufnr)
   -- Actions
   vnoremap('<leader>gs', function()
     gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-  end, { desc = 'stage git hunk' })
+  end, { desc = 'Stage git hunk' })
   vnoremap('<leader>gr', function()
     gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-  end, { desc = 'reset git hunk' })
+  end, { desc = 'Reset git hunk' })
 
-  nnoremap('<leader>gs', gs.stage_hunk, { desc = 'git stage hunk' })
-  nnoremap('<leader>gr', gs.reset_hunk, { desc = 'git reset hunk' })
-  nnoremap('<leader>gS', gs.stage_buffer, { desc = 'git Stage buffer' })
-  nnoremap('<leader>gu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-  nnoremap('<leader>gR', gs.reset_buffer, { desc = 'git Reset buffer' })
-  nnoremap('<leader>gp', gs.preview_hunk, { desc = 'preview git hunk' })
+  nnoremap('<leader>gs', gs.stage_hunk, { desc = 'Git stage hunk' })
+  nnoremap('<leader>gr', gs.reset_hunk, { desc = 'Git reset hunk' })
+  nnoremap('<leader>gS', gs.stage_buffer, { desc = 'Git Stage buffer' })
+  nnoremap('<leader>gu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
+  nnoremap('<leader>gR', gs.reset_buffer, { desc = 'Git Reset buffer' })
+  nnoremap('<leader>gp', gs.preview_hunk, { desc = 'Preview git hunk' })
   nnoremap('<leader>gb', function()
     gs.blame_line { full = false }
-  end, { desc = 'git blame line' })
-  nnoremap('<leader>gd', gs.diffthis, { desc = 'git diff against index' })
+  end, { desc = 'Git blame line' })
+  nnoremap('<leader>gd', gs.diffthis, { desc = 'Git diff against index' })
   nnoremap('<leader>gD', function()
     gs.diffthis '~'
-  end, { desc = 'git diff against last commit' })
+  end, { desc = 'Git diff against last commit' })
 
   -- Toggles
-  nnoremap('<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-  nnoremap('<leader>td', gs.toggle_deleted, { desc = 'toggle git show deleted' })
+  nnoremap('<leader>gtb', gs.toggle_current_line_blame, { desc = 'Toggle git blame line' })
+  nnoremap('<leader>gtd', gs.toggle_deleted, { desc = 'Toggle git show deleted' })
 
   -- Text object
-  map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
+  map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Select git hunk' })
 end
 
 -- Lazygit
@@ -409,5 +413,11 @@ nnoremap('<F11>', dap.step_into, { desc = 'Debug: Step Into' })
 nnoremap('<S-F11>', dap.step_out, { desc = 'Debug: Step Out' })
 nnoremap('<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
 nnoremap('<F7>', dapui.toggle, { desc = 'Debug: See last session result' })
+
+-- Treesitter
+local ts_incremental_selection = require('nvim-treesitter.incremental_selection')
+
+nnoremap('<c-space>', ts_incremental_selection.init_selection, { desc = 'Treesitter: Init selection' })
+vnoremap('<c-space>', ts_incremental_selection.node_incremental, { desc = 'Treesitter: Node incremental' })
 
 return M

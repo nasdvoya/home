@@ -23,7 +23,7 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      notify = false, -- Disable warnings about issues detected with your mappings
+      icons = { rules = false, },
     },
     config = function()
       local wk = require('which-key')
