@@ -322,15 +322,14 @@ M.which_key = function(wk)
   wk.add({
     -- Top-level groups
     { "<leader>c",        group = "Code" },
-    { "<leader>so",       group = "Search [O]bsidian notes" },
     { "<leader>d",        group = "Diagnostic" },
     { "<leader>g",        group = "Git" },
     { "<leader>gt",       group = "Git [T]oggles" },
     { "<leader>h",        group = "Harpoon" },
-    { "<leader>r",        group = "Rename" },
     { "<leader>s",        group = "Search" },
     { "<leader>o",        group = "Obsidian and oil" },
     { "<leader>l",        group = "Lazy git" },
+    { "<leader>gh",       group = "Hunk operations" },
     -- hidden
     { "<leader>q",        hidden = true },
     { "<leader>f",        hidden = true },
@@ -378,12 +377,12 @@ M.gitsigns = function(gs, bufnr)
     gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
   end, { desc = 'Reset git hunk' })
 
-  nnoremap('<leader>gs', gs.stage_hunk, { desc = 'Git stage hunk' })
-  nnoremap('<leader>gr', gs.reset_hunk, { desc = 'Git reset hunk' })
+  nnoremap('<leader>ghs', gs.stage_hunk, { desc = 'Git stage hunk' })
+  nnoremap('<leader>ghr', gs.reset_hunk, { desc = 'Git reset hunk' })
+  nnoremap('<leader>ghu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
+  nnoremap('<leader>ghp', gs.preview_hunk, { desc = 'Preview git hunk' })
   nnoremap('<leader>gS', gs.stage_buffer, { desc = 'Git Stage buffer' })
-  nnoremap('<leader>gu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
   nnoremap('<leader>gR', gs.reset_buffer, { desc = 'Git Reset buffer' })
-  nnoremap('<leader>gp', gs.preview_hunk, { desc = 'Preview git hunk' })
   nnoremap('<leader>gb', function()
     gs.blame_line { full = false }
   end, { desc = 'Git blame line' })
@@ -402,6 +401,15 @@ end
 
 -- Lazygit
 nnoremap("<leader>lg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+
+-- Neogit
+local neogit = require('neogit')
+nnoremap('<leader>ng', neogit.open, { desc = 'Neogit' })
+nnoremap('<leader>gc', ':Neogit commit<CR>', { desc = 'Neogit Commit', silent = true, noremap = true })
+nnoremap('<leader>gp', ':Neogit pull<CR>', { desc = 'Neogit Pull', silent = true, noremap = true })
+nnoremap('<leader>gP', ':Neogit push<CR>', { desc = 'Neogit Push', silent = true, noremap = true })
+nnoremap('<leader>gb', telescope_b.git_branches, { desc = 'Telescope Git Branches', silent = true, noremap = true })
+nnoremap('<leader>gB', ':G blame<CR>', { desc = 'Git Blame', silent = true, noremap = true })
 
 -- Dap
 local dap = require('dap')
