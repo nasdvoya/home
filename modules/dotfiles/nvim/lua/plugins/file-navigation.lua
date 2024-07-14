@@ -56,25 +56,12 @@ return {
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("oil").setup({
+      local oil = require("oil")
+      local keymaps = require("user.keymaps")
+
+      oil.setup({
         use_default_keymaps = false,
-        keymaps = {
-          ["g?"] = "actions.show_help",
-          ["<CR>"] = "actions.select",
-          ["<C-\\>"] = "actions.select_split",
-          ["<C-enter>"] = "actions.select_vsplit", -- this is used to navigate left
-          ["<C-t>"] = "actions.select_tab",
-          ["<C-p>"] = "actions.preview",
-          ["<C-c>"] = "actions.close",
-          ["<C-r>"] = "actions.refresh",
-          ["-"] = "actions.parent",
-          ["_"] = "actions.open_cwd",
-          ["`"] = "actions.cd",
-          ["~"] = "actions.tcd",
-          ["gs"] = "actions.change_sort",
-          ["gx"] = "actions.open_external",
-          ["g."] = "actions.toggle_hidden",
-        },
+        keymaps = keymaps.oil_keymaps(),
         view_options = {
           show_hidden = true,
         },
@@ -106,39 +93,9 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local harpoon = require("harpoon")
+      local keymaps = require("user.keymaps")
       harpoon:setup()
-      vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end, { desc = 'Add mark' })
-      vim.keymap.set("n", "<leader>hd", function() harpoon:list():remove() end, { desc = 'Remove mark' })
-
-      vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end, { desc = 'Go to 1' })
-      vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end, { desc = 'Go to 2' })
-      vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end, { desc = 'Go to 3' })
-      vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end, { desc = 'Go to 4' })
-
-      -- Toggle previous & next buffers stored within Harpoon list
-      vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-      vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
-
-      -- basic telescope configuration
-      local conf = require("telescope.config").values
-      local function toggle_telescope(harpoon_files)
-        local file_paths = {}
-        for _, item in ipairs(harpoon_files.items) do
-          table.insert(file_paths, item.value)
-        end
-
-        require("telescope.pickers").new({}, {
-          prompt_title = "Harpoon",
-          finder = require("telescope.finders").new_table({
-            results = file_paths,
-          }),
-          previewer = conf.file_previewer({}),
-          sorter = conf.generic_sorter({}),
-        }):find()
-      end
-
-      vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
-        { desc = "Open harpoon window" })
+      keymaps.harpoon_keymaps(harpoon)
     end,
   }
 }
