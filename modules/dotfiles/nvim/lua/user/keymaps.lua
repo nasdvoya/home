@@ -16,7 +16,7 @@ nnoremap("<leader>q", "<cmd>q<cr>", { silent = false, desc = "Quit current buffe
 nnoremap("<leader>z", "<cmd>wq<cr>", { silent = false, desc = "Save and quit current buffer" })
 
 -- Navigation
-nnoremap('<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle file tree [e]explorer' })
+nnoremap('<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle file tree [e]explorer' })
 nnoremap("<leader>oi", function()
   require("oil").toggle_float()
 end, { desc = "[O]il [f]ile managment" })
