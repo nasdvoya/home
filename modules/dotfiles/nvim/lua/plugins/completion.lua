@@ -18,7 +18,7 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       },
-      mapping = keymaps.completion_mappings(cmp, luasnip),
+      mapping = keymaps.completion(cmp, luasnip),
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },

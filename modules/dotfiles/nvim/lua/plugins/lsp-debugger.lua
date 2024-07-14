@@ -21,6 +21,50 @@ return {
     opts = {}
   },
   {
+    -- Debugger
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+      'williamboman/mason.nvim',
+      'jay-babu/mason-nvim-dap.nvim',
+      'nvim-neotest/nvim-nio',
+    },
+    config = function()
+      local dap = require 'dap'
+      local dapui = require 'dapui'
+
+      require('mason-nvim-dap').setup {
+        automatic_setup = true,
+        handlers = {},
+        ensure_installed = {
+          -- Update this to ensure that you have the debuggers for the langs you want
+        },
+      }
+      -- Setup Dap UI
+      dapui.setup {
+        icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+        controls = {
+          icons = {
+            pause = '⏸',
+            play = '▶',
+            step_into = '⏎',
+            step_over = '⏭',
+            step_out = '⏮',
+            step_back = 'b',
+            run_last = '▶▶',
+            terminate = '⏹',
+            disconnect = '⏏',
+          },
+        },
+      }
+      dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+      dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+      dap.listeners.before.event_exited['dapui_config'] = dapui.close
+      -- Install golang specific config
+      --require('dap-go').setup()
+    end,
+  },
+  {
     -- LSP
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -33,9 +77,9 @@ return {
       local keymaps = require("user.keymaps")
       local on_attach = function(_, buffer_number)
         if _.name == "omnisharp" then
-          keymaps.map_omnisharp_keybinds(buffer_number)
+          keymaps.omnisharp(buffer_number)
         else
-          keymaps.map_default_lsp_keybinds(buffer_number)
+          keymaps.default_lsp(buffer_number)
         end
         vim.api.nvim_buf_create_user_command(buffer_number, 'Format', function(_)
           vim.lsp.buf.format()

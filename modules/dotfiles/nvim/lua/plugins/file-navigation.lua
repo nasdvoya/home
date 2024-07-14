@@ -61,7 +61,7 @@ return {
 
       oil.setup({
         use_default_keymaps = false,
-        keymaps = keymaps.oil_keymaps(),
+        keymaps = keymaps.oil(),
         view_options = {
           show_hidden = true,
         },
@@ -95,7 +95,7 @@ return {
       local harpoon = require("harpoon")
       local keymaps = require("user.keymaps")
       harpoon:setup()
-      keymaps.harpoon_keymaps(harpoon)
+      keymaps.harpoon(harpoon)
     end,
   }
 }

@@ -129,22 +129,22 @@ end, { desc = "Search [g]it [f]iles" })
 
 -- Telescope keybinds
 local telescope_b = require('telescope.builtin')
-nnoremap('<leader>st', '<cmd>TodoTelescope<cr>', { desc = '[?] [s]earch todo notes' })
+nnoremap('<leader>st', '<cmd>TodoTelescope<cr>', { desc = '[?] [S]earch todo notes' })
 nnoremap('<leader>?', telescope_b.oldfiles, { desc = "[?] Find recently opened files" })
-nnoremap('<leader><space>', telescope_b.buffers, { desc = "[s]earch Open [b]uffers" })
-nnoremap('<leader>sh', telescope_b.help_tags, { desc = "[s]earch [h]elp" })
-nnoremap('<leader>sg', telescope_b.live_grep, { desc = "[s]earch by [g]rep" })
-nnoremap('<leader>sw', telescope_b.grep_string, { desc = '[s]earch current [w]ord' })
-nnoremap('<leader>sd', telescope_b.diagnostics, { desc = '[s]earch [d]iagnostics' })
+nnoremap('<leader><space>', telescope_b.buffers, { desc = "[S]earch Open [b]uffers" })
+nnoremap('<leader>sh', telescope_b.help_tags, { desc = "[S]earch [h]elp" })
+nnoremap('<leader>sg', telescope_b.live_grep, { desc = "[S]earch by [g]rep" })
+nnoremap('<leader>sw', telescope_b.grep_string, { desc = '[S]earch current [w]ord' })
+nnoremap('<leader>sd', telescope_b.diagnostics, { desc = '[S]earch [d]iagnostics' })
 nnoremap("<leader>sf", function()
   telescope_b.find_files({ hidden = true })
-end, { desc = "[s]earch [f]iles" })
+end, { desc = "[S]earch [f]iles" })
 
 nnoremap("<leader>sc", function()
   telescope_b.commands(require("telescope.themes").get_dropdown({
     previewer = false,
   }))
-end, { desc = "[s]earch [c]ommands" })
+end, { desc = "[S]earch [c]ommands" })
 
 nnoremap("<leader>/", function()
   telescope_b.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
@@ -157,10 +157,10 @@ nnoremap("<leader>ss", function()
   telescope_b.spell_suggest(require("telescope.themes").get_dropdown({
     previewer = false,
   }))
-end, { desc = "[s]earch [s]pelling suggestions" })
+end, { desc = "[S]earch [s]pelling suggestions" })
 
 -- Completion
-M.completion_mappings = function(cmp, luasnip)
+M.completion = function(cmp, luasnip)
   return cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -191,7 +191,7 @@ M.completion_mappings = function(cmp, luasnip)
 end
 
 -- Oil
-M.oil_keymaps = function()
+M.oil = function()
   return {
     ["g?"] = "actions.show_help",
     ["<CR>"] = "actions.select",
@@ -212,7 +212,7 @@ M.oil_keymaps = function()
 end
 
 -- Harpoon
-M.harpoon_keymaps = function(harpoon)
+M.harpoon = function(harpoon)
   nnoremap("<leader>ha", function() harpoon:list():append() end, { desc = 'Add mark' })
   nnoremap("<leader>hd", function() harpoon:list():remove() end, { desc = 'Remove mark' })
 
@@ -260,7 +260,7 @@ nnoremap("<leader>oi", function()
 end, { desc = "[O]il [f]ile managment" })
 
 -- LSP
-M.map_common_lsp_keybinds = function(buffer_number)
+M.common_lsp = function(buffer_number)
   nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = buffer_number })
   nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [a]ction", buffer = buffer_number })
 
@@ -276,25 +276,25 @@ M.map_common_lsp_keybinds = function(buffer_number)
   inoremap("<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
 
   -- Lesser used LSP functionality
-  nnoremap("gD", vim.lsp.buf.declaration, { desc = "LSP: [g]oto [d]eclaration", buffer = buffer_number })
+  nnoremap("gD", vim.lsp.buf.declaration, { desc = "LSP: [G]oto [d]eclaration", buffer = buffer_number })
 end
 
 -- Default LSP
-M.map_default_lsp_keybinds = function(buffer_number)
-  M.map_common_lsp_keybinds(buffer_number)
-  nnoremap("gd", vim.lsp.buf.definition, { desc = "LSP: [g]oto [d]efinition", buffer = buffer_number })
+M.default_lsp = function(buffer_number)
+  M.common_lsp(buffer_number)
+  nnoremap("gd", vim.lsp.buf.definition, { desc = "LSP: [G]oto [d]efinition", buffer = buffer_number })
   nnoremap("gr", require("telescope.builtin").lsp_references,
     { desc = "LSP: [G]oto [R]eferences", buffer = buffer_number })
   nnoremap("gi", require("telescope.builtin").lsp_implementations,
     { desc = "LSP: [G]oto [I]mplementation", buffer = buffer_number })
-  nnoremap("td", vim.lsp.buf.type_definition, { desc = "LSP: [t]ype [d]efinition", buffer = buffer_number })
+  nnoremap("td", vim.lsp.buf.type_definition, { desc = "LSP: [T]ype [d]efinition", buffer = buffer_number })
 end
 
 -- OmniSharp LSP
-M.map_omnisharp_keybinds = function(buffer_number)
-  M.map_common_lsp_keybinds(buffer_number)
+M.omnisharp = function(buffer_number)
+  M.common_lsp(buffer_number)
   nnoremap("gd", "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>",
-    { desc = "LSP: [g]oto [d]efinition", buffer = buffer_number })
+    { desc = "LSP: [G]oto [d]efinition", buffer = buffer_number })
   nnoremap("gr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>",
     { desc = "LSP: [G]oto [R]eferences", buffer = buffer_number })
   nnoremap("gi", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",
@@ -395,5 +395,19 @@ M.gitsigns = function(gs, bufnr)
   -- Text object
   map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
 end
+
+-- Lazygit
+nnoremap("<leader>lg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+
+-- Dap
+local dap = require('dap')
+local dapui = require('dapui')
+
+nnoremap('<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
+nnoremap('<F10>', dap.step_over, { desc = 'Debug: Step Over' })
+nnoremap('<F11>', dap.step_into, { desc = 'Debug: Step Into' })
+nnoremap('<S-F11>', dap.step_out, { desc = 'Debug: Step Out' })
+nnoremap('<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+nnoremap('<F7>', dapui.toggle, { desc = 'Debug: See last session result' })
 
 return M
