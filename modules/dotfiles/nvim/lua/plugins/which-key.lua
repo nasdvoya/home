@@ -15,7 +15,7 @@ return {
       ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       ['<leader>cr'] = { name = '[R]un [c]ode', _ = 'which_key_ignore' },
       ['<leader>ca'] = { name = '[C]ode [a]ction', _ = 'which_key_ignore' },
-      ['<leader>o'] = { name = '[O]bsidian and [oil]', _ = 'which_key_ignore' },
+      ['<leader>o'] = { name = '[O]bsidian and [O]il', _ = 'which_key_ignore' },
       ['<leader>l'] = { name = '[L]azy git', _ = 'which_key_ignore' },
     })
   end,
