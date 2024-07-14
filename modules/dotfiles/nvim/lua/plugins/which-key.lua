@@ -16,6 +16,7 @@ return {
       ['<leader>cr'] = { name = '[R]un [c]ode', _ = 'which_key_ignore' },
       ['<leader>ca'] = { name = '[C]ode [a]ction', _ = 'which_key_ignore' },
       ['<leader>o'] = { name = '[O]bsidian and [oil]', _ = 'which_key_ignore' },
+      ['<leader>l'] = { name = '[L]azy git', _ = 'which_key_ignore' },
     })
   end,
 }
