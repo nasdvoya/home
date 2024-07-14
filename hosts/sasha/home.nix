@@ -9,7 +9,7 @@ let
     wlogout xdg-desktop-portal-hyprland pamixer grim slurp wl-clipboard nwg-displays wlr-randr 
     xfce.thunar nwg-look fluent-gtk-theme swaybg tofi brightnessctl 
     # CLI tools
-    htop zip neofetch unzip lazygit xclip pavucontrol bluetuith ranger zoxide 
+    htop zip neofetch unzip xclip pavucontrol bluetuith ranger zoxide 
     sops
     # General
     mqttui helix neovim fzf ripgrep sqlite yarn nixos-generators qbittorrent

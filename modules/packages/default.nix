@@ -8,5 +8,6 @@
     ./atuin.nix
     ./git.nix
     ./bash.nix
+    ./lazygit.nix
   ];
 }
