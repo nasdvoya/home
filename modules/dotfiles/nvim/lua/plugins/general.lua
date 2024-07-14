@@ -13,5 +13,6 @@ return {
     -- Comments
     'numToStr/Comment.nvim',
     opts = {}
-  }
+  },
+
 }

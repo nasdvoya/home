@@ -1,35 +1,23 @@
 return {
   "folke/which-key.nvim",
-  opts = {},
+  opts = {
+    notify = false, -- Disable warnings about issues detected with your mappings
+  },
   config = function()
     local wk = require('which-key')
 
     wk.register({
-      { "<leader>c",  group = "[C]ode" },
-      { "<leader>ca", group = "[C]ode [a]ction" },
-      { "<leader>cr", group = "[R]un [c]ode" },
-      { "<leader>d",  group = "[D]iagnostic and [d]ebugger" },
-      { "<leader>g",  group = "[G]it" },
-      { "<leader>h",  group = "[H]arpoon" },
-      { "<leader>l",  group = "[L]azy git" },
-      { "<leader>o",  group = "[O]bsidian and [oil]" },
-      { "<leader>r",  group = "[R]ename" },
-      { "<leader>s",  group = "[S]earch" },
-      { "<leader>w",  group = "[W]orkspace" },
-    }, { prefix = "<leader>" })
-
-    wk.register({
-      { "<leader>c_",  hidden = true },
-      { "<leader>ca_", hidden = true },
-      { "<leader>cr_", hidden = true },
-      { "<leader>d_",  hidden = true },
-      { "<leader>g_",  hidden = true },
-      { "<leader>h_",  hidden = true },
-      { "<leader>l_",  hidden = true },
-      { "<leader>o_",  hidden = true },
-      { "<leader>r_",  hidden = true },
-      { "<leader>s_",  hidden = true },
-      { "<leader>w_",  hidden = true },
-    }, { prefix = "<leader>", hidden = true })
+      ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+      ['<leader>d'] = { name = '[D]iagnostic and [d]ebugger', _ = 'which_key_ignore' },
+      ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
+      ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+      ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+      ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+      ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      ['<leader>cr'] = { name = '[R]un [c]ode', _ = 'which_key_ignore' },
+      ['<leader>ca'] = { name = '[C]ode [a]ction', _ = 'which_key_ignore' },
+      ['<leader>o'] = { name = '[O]bsidian and [O]il', _ = 'which_key_ignore' },
+      ['<leader>l'] = { name = '[L]azy git', _ = 'which_key_ignore' },
+    })
   end,
 }
