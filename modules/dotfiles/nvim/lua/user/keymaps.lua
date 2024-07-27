@@ -409,7 +409,7 @@ nnoremap('<leader>ng', neogit.open, { desc = 'Neogit' })
 nnoremap('<leader>gc', ':Neogit commit<CR>', { desc = 'Neogit Commit', silent = true, noremap = true })
 nnoremap('<leader>gp', ':Neogit pull<CR>', { desc = 'Neogit Pull', silent = true, noremap = true })
 nnoremap('<leader>gP', ':Neogit push<CR>', { desc = 'Neogit Push', silent = true, noremap = true })
-nnoremap('<leader>sgb', telescope_b.git_branches, { desc = '[S]earch [g]it [b]ranches', silent = true, noremap = true })
+-- nnoremap('<leader>sgb', telescope_b.git_branches, { desc = '[S]earch [g]it [b]ranches', silent = true, noremap = true })
 
 -- Dap
 local dap = require('dap')
