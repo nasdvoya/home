@@ -6,7 +6,8 @@ let
   dynamicPackages = map (packageName: pkgs.${packageName}) packageList;
   staticPackages = with pkgs; [
     xclip zip unzip zoxide neovim
-    gcc ranger xdotool
+    gcc ranger xdotool firefox
+    
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 in
