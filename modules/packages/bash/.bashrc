@@ -112,3 +112,5 @@ export EDITOR=nvim
 # Terminal tools
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
+# Set the PROMPT_COMMAND to run the function dev-env if present
+PROMPT_COMMAND=dev-env
