@@ -18,7 +18,7 @@
       l = "ls -CF";
       vim = "nvim";
       vi = "nvim";
-      rebuild = "home-manager switch --flake /home/$(whoami)/Github/home#$(whoami)";
+      rebuild = "sudo nixos-rebuild switch --flake /home/$(whoami)/Github/home#$(whoami)";
       # Programs
       code = "code --ozone-platform=wayland";
       notes = "obsidian --ozone-platform=wayland";

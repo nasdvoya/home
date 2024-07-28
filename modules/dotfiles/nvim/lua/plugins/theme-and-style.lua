@@ -42,31 +42,6 @@ return {
     end,
   },
   {
-    -- Indentation lines
-    "shellRaining/hlchunk.nvim",
-    event = { "UIEnter" },
-    config = function()
-      require("hlchunk").setup({
-        chunk = {
-          chars = {
-            horizontal_line = "─",
-            vertical_line = "│",
-            left_top = "┌",
-            left_bottom = "└",
-            right_arrow = "─",
-          },
-        },
-        indent = { enable = true },
-        blank = {
-          enable = true,
-          chars = {
-            " ",
-          },
-        }
-      })
-    end,
-  },
-  {
     -- Status line
     'nvim-lualine/lualine.nvim',
     opts = {

@@ -4,10 +4,10 @@
   imports = [
     ./starship.nix
     ./alacritty.nix
-    ./broot.nix
-    ./atuin.nix
     ./git.nix
     ./bash.nix
     ./lazygit.nix
+    ./wezterm.nix
+    ./atuin.nix
   ];
 }
