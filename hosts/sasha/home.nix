@@ -18,6 +18,7 @@ in
   imports = [ 
     ../../modules/packages
     ../../modules/dotfiles
+    ../../tools/script-builder.nix
   ];
 
   home.username = "sasha";
