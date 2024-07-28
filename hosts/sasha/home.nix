@@ -5,8 +5,9 @@ let
   packageList = packageListJson.packages;
   dynamicPackages = map (packageName: pkgs.${packageName}) packageList;
   staticPackages = with pkgs; [
-    xclip zip unzip zoxide neovim
+    xclip zip unzip zoxide
     gcc ranger xdotool firefox
+    fzf
     
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
@@ -25,8 +26,8 @@ in
     EDITOR = "nvim";
   };
   home.packages = staticPackages ++ dynamicPackages;
-
-   # Enable custom modules
+   
+  # Enable custom modules
   desktopEnvironment.enable = true;
 
   # Let Home Manager install and manage itself.

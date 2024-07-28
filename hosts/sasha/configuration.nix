@@ -7,6 +7,8 @@
       ./hardware-configuration.nix
     ];
 
+  services.twingate.enable = true;
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
@@ -114,7 +116,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 

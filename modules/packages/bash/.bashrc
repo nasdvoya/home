@@ -92,7 +92,6 @@ fi
 
 
 # Nix
-. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 # Dotnet
 # bash parameter completion for the dotnet CLI
 function _dotnet_bash_complete()

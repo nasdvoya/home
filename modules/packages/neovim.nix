@@ -5,6 +5,7 @@
     extraPackages = with pkgs; [
        ripgrep
        fd
+       fzf
        nil
        rustc
        cargo
