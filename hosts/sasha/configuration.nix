@@ -6,9 +6,8 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
-  services.twingate.enable = true;
-
+  
+  nix.gc = { automatic = true; dates = "weekly"; options = "--delete-older-than 7d"; };
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
@@ -46,6 +45,9 @@
     LC_TIME = "pt_PT.UTF-8";
   };
 
+  # Services
+  services.twingate.enable = true;
+  services.dnsmasq.enable = true;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

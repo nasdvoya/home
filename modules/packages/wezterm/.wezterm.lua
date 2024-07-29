@@ -3,6 +3,58 @@ local mux = wezterm.mux
 
 local config = {}
 
+-- Default program (Bash as login shell)
+config.default_prog = {"bash"}
+
+-- Cursor and window behavior
+config.default_cursor_style = "BlinkingBar"
+config.automatically_reload_config = true
+config.window_close_confirmation = "NeverPrompt"
+config.adjust_window_size_when_changing_font_size = false
+config.window_decorations = "RESIZE"
+config.check_for_updates = false
+
+-- Tab bar settings
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = false
+config.enable_tab_bar = false
+
+-- Font settings
+config.font_size = 11.5
+config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
+
+-- Window padding
+config.window_padding = {
+  left = 3,
+  right = 3,
+  top = 0,
+  bottom = 0,
+}
+
+-- Background settings
+config.background = {
+  {
+    source = {
+      File = "/home/sasha/Pictures/minimal-blue.png",
+    },
+    hsb = {
+      hue = 1.0,
+      saturation = 1.02,
+      brightness = 0.25,
+    },
+    width = "100%",
+    height = "100%",
+  },
+  {
+    source = {
+      Color = "#282c35",
+    },
+    width = "100%",
+    height = "100%",
+    opacity = 0.85,
+  },
+}
+
 -- URL highlighting rules
 config.hyperlink_rules = {
   -- Matches: a URL in parens: (URL)
@@ -106,7 +158,14 @@ function readjust_font_size(window, pane)
   end
 end
 
+-- Apply color scheme based on the WEZTERM_THEME environment variable
+local themes = {
+  nord = "Nord (Gogh)",
+  onedark = "One Dark (Gogh)",
+}
+local success, stdout, stderr = wezterm.run_child_process({ os.getenv("SHELL"), "-c", "printenv WEZTERM_THEME" })
 local selected_theme = stdout:gsub("%s+", "") -- Remove all whitespace characters including newline
-config.color_scheme = "One Dark (Gogh)";
+config.color_scheme = themes[selected_theme] or "Hybrid"
+config.hide_mouse_cursor_when_typing = false
 
 return config
