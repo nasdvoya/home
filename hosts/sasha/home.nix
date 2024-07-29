@@ -7,7 +7,7 @@ let
   staticPackages = with pkgs; [
     xclip zip unzip zoxide
     gcc ranger xdotool firefox
-    fzf
+    fzf appimage-run
     
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
