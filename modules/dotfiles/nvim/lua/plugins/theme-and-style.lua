@@ -3,6 +3,11 @@ return {
   {
     "EdenEast/nightfox.nvim",
     config = function()
+      require("nightfox").setup({
+        options = {
+          transparent = true,
+        },
+      })
       vim.cmd [[colorscheme carbonfox]]
     end
   },
@@ -20,7 +25,7 @@ return {
   },
   {
     "shellRaining/hlchunk.nvim",
-    
+
     config = function()
       require("hlchunk").setup({
         chunk = {

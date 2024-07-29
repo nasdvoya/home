@@ -4,7 +4,7 @@ local mux = wezterm.mux
 local config = {}
 
 -- Default program (Bash as login shell)
-config.default_prog = {"bash"}
+config.default_prog = { "bash" }
 
 -- Cursor and window behavior
 config.default_cursor_style = "BlinkingBar"
@@ -46,15 +46,7 @@ config.background = {
     },
     width = "100%",
     height = "100%",
-  },
-  {
-    source = {
-      Color = "#282c35",
-    },
-    width = "100%",
-    height = "100%",
-    opacity = 0.85,
-  },
+  }
 }
 
 -- URL highlighting rules
@@ -168,6 +160,6 @@ local themes = {
 local success, stdout, stderr = wezterm.run_child_process({ os.getenv("SHELL"), "-c", "printenv WEZTERM_THEME" })
 local selected_theme = stdout:gsub("%s+", "") -- Remove all whitespace characters including newline
 config.color_scheme = themes[selected_theme] or "carbonfox"
-config.hide_mouse_cursor_when_typing = false
+config.hide_mouse_cursor_when_typing = true
 
 return config
