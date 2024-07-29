@@ -165,7 +165,7 @@ local themes = {
 }
 local success, stdout, stderr = wezterm.run_child_process({ os.getenv("SHELL"), "-c", "printenv WEZTERM_THEME" })
 local selected_theme = stdout:gsub("%s+", "") -- Remove all whitespace characters including newline
-config.color_scheme = themes[selected_theme] or "Hybrid"
+config.color_scheme = themes[selected_theme] or "carbonfox"
 config.hide_mouse_cursor_when_typing = false
 
 return config
