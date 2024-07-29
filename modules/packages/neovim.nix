@@ -10,6 +10,7 @@
        rustc
        cargo
        lua-language-server
+       lua
     ];
   };
 }

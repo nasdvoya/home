@@ -31,6 +31,8 @@ config.window_padding = {
   bottom = 0,
 }
 
+-- keys
+
 -- Background settings
 config.background = {
   {

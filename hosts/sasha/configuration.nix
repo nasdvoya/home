@@ -7,6 +7,7 @@
       ./hardware-configuration.nix
     ];
   
+  programs.nix-ld.enable = true; 
   nix.gc = { automatic = true; dates = "weekly"; options = "--delete-older-than 7d"; };
   nix = {
     package = pkgs.nixFlakes;
