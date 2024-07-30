@@ -4,12 +4,10 @@ return {
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = false,
     dependencies = {
-      -- Required.
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim",
       'nvim-treesitter/nvim-treesitter',
-
     },
     opts = {
       workspaces = {
@@ -31,16 +29,5 @@ return {
       notes_subdir = "inbox",
       new_notes_location = "notes_subdir",
     },
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
   }
-
-
 }
