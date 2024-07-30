@@ -7,7 +7,7 @@ let
   staticPackages = with pkgs; [
     xclip zip unzip zoxide
     gcc ranger xdotool firefox
-    fzf appimage-run 
+    fzf appimage-run helix
 
     yarn nodejs_22
     
