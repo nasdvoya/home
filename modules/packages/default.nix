@@ -10,5 +10,6 @@
     ./wezterm.nix
     ./atuin.nix
     ./neovim.nix
+    ./vscode.nix
   ];
 }
