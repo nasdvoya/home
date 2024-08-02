@@ -23,3 +23,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ timeout = 200, visual = true })
   end,
 })
+
+-- Group for file type specific settings
+local filetype_group = vim.api.nvim_create_augroup("filetype_settings", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = filetype_group,
+  pattern = "oil",
+  callback = function()
+    vim.opt_local.colorcolumn = ""
+  end,
+})

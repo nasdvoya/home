@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 
 local config = {}
+local act = wezterm.action
 
 -- Default program (Bash as login shell)
 config.default_prog = { "bash" }
@@ -16,8 +17,8 @@ config.check_for_updates = false
 
 -- Tab bar settings
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = false
-config.enable_tab_bar = false
+config.tab_bar_at_bottom = true
+config.enable_tab_bar = true
 
 -- Font settings
 config.font_size = 11.5
@@ -31,8 +32,63 @@ config.window_padding = {
   bottom = 0,
 }
 
--- keys
+-- Unix domains
+config.unix_domains = {
+  {
+    name = 'unix',
+  },
+}
 
+-- keys
+config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.keys = {
+  -- Panes
+  { key = "-",          mods = "LEADER", action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+  { key = ".",          mods = "LEADER", action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = 'z',          mods = 'LEADER', action = act.TogglePaneZoomState },
+  { key = 'm',          mods = 'LEADER', action = act.RotatePanes 'Clockwise' },
+  -- Panes -- Resizing
+  { key = 'LeftArrow',  mods = 'ALT',    action = act.AdjustPaneSize { 'Left', 5 } },
+  { key = 'RightArrow', mods = 'ALT',    action = act.AdjustPaneSize { 'Right', 5 } },
+  { key = 'UpArrow',    mods = 'ALT',    action = act.AdjustPaneSize { 'Up', 5 } },
+  { key = 'DownArrow',  mods = 'ALT',    action = act.AdjustPaneSize { 'Down', 5 } },
+  -- Panes -- Moving
+  { key = 'h',          mods = 'ALT',    action = act.ActivatePaneDirection 'Left' },
+  { key = 'l',          mods = 'ALT',    action = act.ActivatePaneDirection 'Right' },
+  { key = 'k',          mods = 'ALT',    action = act.ActivatePaneDirection 'Up' },
+  { key = 'j',          mods = 'ALT',    action = act.ActivatePaneDirection 'Down' },
+  -- Tabs
+  { key = "t",          mods = "LEADER", action = act.SpawnTab 'CurrentPaneDomain' },
+  { key = 'w',          mods = 'LEADER', action = act.CloseCurrentTab { confirm = true } },
+  { key = 'p',          mods = 'LEADER', action = act.ActivateTabRelative(-1) },
+  { key = 'n',          mods = 'LEADER', action = act.ActivateTabRelative(1) },
+  { key = 'e',          mods = 'LEADER', action = act.ShowTabNavigator },
+  -- Windows
+  { key = 'Enter',      mods = 'LEADER', action = act.ToggleFullScreen },
+  -- Muxer
+  { key = 'a',          mods = 'LEADER', action = act.AttachDomain 'unix' },
+  { key = 'd',          mods = 'LEADER', action = act.DetachDomain { DomainName = 'unix' } },
+  { key = 's',          mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'WORKSPACES' } },
+  {
+    key = 'º',
+    mods = 'LEADER',
+    action = act.PromptInputLine {
+      description = 'Enter new name for session',
+      action = wezterm.action_callback(
+        function(window, pane, line)
+          if line then
+            mux.rename_workspace(
+              window:mux_window():get_workspace(),
+              line
+            )
+          end
+        end
+      ),
+    },
+  },
+  -- Misc
+  { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
+}
 -- Background settings
 config.background = {
   {
@@ -46,6 +102,16 @@ config.background = {
     },
     width = "100%",
     height = "100%",
+  }
+}
+config.tab_max_width = 32
+config.colors = {
+  tab_bar = {
+    active_tab = {
+      -- I use a solarized dark theme; this gives a teal background to the active tab
+      bg_color = "#161616",
+      fg_color = "#b6b8bb"
+    }
   }
 }
 

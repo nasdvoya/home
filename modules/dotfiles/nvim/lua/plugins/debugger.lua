@@ -11,9 +11,48 @@ return {
       local dap = require 'dap'
       local dapui = require 'dapui'
 
+      -- Function to get project name from .csproj file
+      local function get_project_name()
+        local cwd = vim.fn.getcwd()
+        local project_name = nil
+
+        -- Iterate over all files in the current directory
+        for _, file in ipairs(vim.fn.readdir(cwd)) do
+          if file:match("%.csproj$") then
+            project_name = file:gsub("%.csproj$", "")
+            break
+          end
+        end
+
+        return project_name
+      end
+
+      -- Function to find the DLL file path
+      local function find_dll_path()
+        local project_name = get_project_name()
+        if not project_name then
+          return nil
+        end
+
+        local cwd = vim.fn.getcwd()
+        local dll_path = nil
+
+        -- Check for all directories under bin/Debug
+        local debug_dirs = vim.fn.glob(cwd .. '/bin/Debug/*', 1, 1)
+        for _, dir in ipairs(debug_dirs) do
+          local potential_path = dir .. '/' .. project_name .. '.dll'
+          if vim.loop.fs_stat(potential_path) then
+            dll_path = potential_path
+            break
+          end
+        end
+
+        return dll_path
+      end
+
       dap.adapters.coreclr = {
         type = 'executable',
-        command = 'netcoredbg',
+        command = 'netcoredbg', -- Use the command available in the environment
         args = { '--interpreter=vscode' }
       }
 
@@ -23,7 +62,12 @@ return {
           name = "launch - netcoredbg",
           request = "launch",
           program = function()
-            return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+            local dll_path = find_dll_path()
+            if dll_path then
+              return dll_path
+            else
+              return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+            end
           end,
         },
       }
