@@ -1,22 +1,24 @@
-{ config, pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 let
-  packageListJson = builtins.fromJSON (builtins.readFile ./packages.json);
-  packageList = packageListJson.packages;
-  dynamicPackages = map (packageName: pkgs.${packageName}) packageList;
-  staticPackages = with pkgs; [
+  pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
+  jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
+  stablePkgs = with pkgs; [
     xclip zip unzip zoxide
-    gcc ranger xdotool firefox
-    fzf appimage-run helix
-
-    yarn nodejs_22
+    ranger xdotool firefox
+    appimage-run 
     
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+  unstablePkgs = with pkgs-unstable; [
+    neovim fzf fd ripgrep 
+    nil rustc cargo
+    lua-language-server lua
+    yarn nodejs_22 gcc
   ];
 in
 
 {
- 
   imports = [ 
     ../../modules/packages
     ../../modules/dotfiles
@@ -28,13 +30,15 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-  home.packages = staticPackages ++ dynamicPackages;
+  home.packages = stablePkgs ++ unstablePkgs ++ jsonPkgs ;
+
   
   # Enable custom modules
   desktopEnvironment.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  
   home.stateVersion = "24.05";
   
   dconf.settings = {
@@ -50,5 +54,4 @@ in
       name = "Close window";
     };
   };
-
 }
