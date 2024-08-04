@@ -1,11 +1,18 @@
 local wezterm = require("wezterm")
+local session_manager = require("wezterm-session-manager/session-manager")
 local mux = wezterm.mux
-
 local config = {}
 local act = wezterm.action
 
+wezterm.on('update-right-status', function(window, pane)
+  window:set_right_status(window:active_workspace())
+end)
 -- Default program (Bash as login shell)
 config.default_prog = { "bash" }
+
+wezterm.on("save_session", function(window) session_manager.save_state(window) end)
+wezterm.on("load_session", function(window) session_manager.load_state(window) end)
+wezterm.on("restore_session", function(window) session_manager.restore_state(window) end)
 
 -- Cursor and window behavior
 config.default_cursor_style = "BlinkingBar"
@@ -47,6 +54,7 @@ config.keys = {
   { key = ".",          mods = "LEADER", action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
   { key = 'z',          mods = 'LEADER', action = act.TogglePaneZoomState },
   { key = 'm',          mods = 'LEADER', action = act.RotatePanes 'Clockwise' },
+  { key = 'x',          mods = 'LEADER', action = act.CloseCurrentPane { confirm = true }, },
   -- Panes -- Resizing
   { key = 'LeftArrow',  mods = 'ALT',    action = act.AdjustPaneSize { 'Left', 5 } },
   { key = 'RightArrow', mods = 'ALT',    action = act.AdjustPaneSize { 'Right', 5 } },
@@ -69,6 +77,9 @@ config.keys = {
   { key = 'a',          mods = 'LEADER', action = act.AttachDomain 'unix' },
   { key = 'd',          mods = 'LEADER', action = act.DetachDomain { DomainName = 'unix' } },
   { key = 's',          mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'WORKSPACES' } },
+  { key = 's',          mods = 'ALT',    action = act({ EmitEvent = "save_session" }), },
+  { key = 'l',          mods = 'ALT',    action = act({ EmitEvent = "load_session" }), },
+  { key = 'r',          mods = 'ALT',    action = act({ EmitEvent = "restore_session" }), },
   {
     key = 'º',
     mods = 'LEADER',
@@ -104,6 +115,12 @@ config.background = {
     height = "100%",
   }
 }
+
+config.inactive_pane_hsb = {
+  saturation = 0.9,
+  brightness = 0.2,
+}
+
 config.tab_max_width = 32
 config.colors = {
   tab_bar = {
@@ -226,6 +243,6 @@ local themes = {
 local success, stdout, stderr = wezterm.run_child_process({ os.getenv("SHELL"), "-c", "printenv WEZTERM_THEME" })
 local selected_theme = stdout:gsub("%s+", "") -- Remove all whitespace characters including newline
 config.color_scheme = themes[selected_theme] or "carbonfox"
-config.hide_mouse_cursor_when_typing = true
+config.hide_mouse_cursor_when_typing = false
 
 return config

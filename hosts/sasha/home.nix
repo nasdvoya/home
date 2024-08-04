@@ -50,7 +50,7 @@ in
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>t";
-      command = "wezterm";
+      command = "wezterm-gui start --always-new-process";
       name = "Close window";
     };
   };

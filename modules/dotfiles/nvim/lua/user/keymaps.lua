@@ -8,11 +8,9 @@ local M = {}
 
 local TERM = os.getenv("TERM")
 
--- Insert --
--- Map jj to <esc>
-inoremap("jj", "<esc>")
-
 -- Normal --
+nnoremap("L", "$", { desc = "Move to end of line and adjust cursor left" })
+nnoremap("H", "^", { desc = "Move to beginning of line" })
 nnoremap("<esc>", "<cmd>noh<cr>", { silent = true, desc = "Clear search highlights" })
 nnoremap("<space>", "<nop>", { desc = "Disable Space bar" })
 nnoremap("U", "<C-r>", { desc = "Redo the last undone change" })
@@ -28,14 +26,10 @@ nnoremap('j', "v:count == 0 ? 'gj' : 'j'",
 -- Center buffer while navigating
 nnoremap("<C-u>", "<C-u>zz", { desc = "Scroll up and center buffer" })
 nnoremap("<C-d>", "<C-d>zz", { desc = "Scroll down and center buffer" })
-nnoremap("{", "{zz", { desc = "Move to previous paragraph and center buffer" })
-nnoremap("}", "}zz", { desc = "Move to next paragraph and center buffer" })
 nnoremap("N", "Nzz", { desc = "Move to previous search match and center buffer" })
 nnoremap("n", "nzz", { desc = "Move to next search match and center buffer" })
 nnoremap("G", "Gzz", { desc = "Move to end of file and center buffer" })
 nnoremap("gg", "ggzz", { desc = "Move to beginning of file and center buffer" })
-nnoremap("<C-i>", "<C-i>zz", { desc = "Go forward in jump list and center buffer" })
-nnoremap("<C-o>", "<C-o>zz", { desc = "Go backward in jump list and center buffer" })
 
 -- Find stuff (:noh clears). Need better keymap for this
 nnoremap("%", "%zz", { desc = "Jump to matching pair and center buffer" })
@@ -50,6 +44,19 @@ nnoremap("S", function()
 end)
 
 -- Diagnostics
+function YankDiagnosticError()
+  vim.diagnostic.open_float()
+  vim.diagnostic.open_float()
+  local win_id = vim.fn.win_getid()    -- get the window ID of the floating window
+  vim.cmd("normal! j")                 -- move down one row
+  vim.cmd("normal! VG")                -- select everything from that row down
+  vim.cmd("normal! y")                 -- yank selected text
+  vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
+end
+
+-- Mapping the function to a key combination
+nnoremap('<leader>dy', ":lua YankDiagnosticError()<CR>", { desc = 'Yank diagnostic error' })
+
 nnoremap('<leader>dl', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 nnoremap('<leader>dna', function()
@@ -82,17 +89,16 @@ nnoremap('<leader>dpw', function()
   vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = 'Goto [p]revious [w]arning' })
 
-nnoremap("<leader>d", function()
+nnoremap("<leader>do", function()
   vim.diagnostic.open_float({
     border = "rounded",
   })
-end, { desc = 'Diagnos under cursor' })
+end, { desc = 'Diagnostic under cursor' })
 
 -- Press leader f to format
 nnoremap("<leader>f", ":Format<cr>")
 -- Press gx to open the link under the cursor
 nnoremap("gx", ":sil !open <cWORD><cr>", { silent = true })
-
 -- Visual --
 vnoremap("<space>", "<nop>", { desc = "Disable Space bar" })
 -- Press 'H', 'L' to jump to start/end of a line (first/last char)
@@ -249,9 +255,9 @@ inoremap("<C-CR>", function()
   return vim.fn["codeium#Accept"]()
 end, { expr = true, silent = true, desc = "AI chat accept" })
 
-nnoremap("<leader>a", function()
+nnoremap("<leader>ch", function()
   return vim.fn["codeium#Chat"]()
-end, { expr = true, silent = true, desc = " AI chat" })
+end, { expr = true, silent = true, desc = " [C]ode [H]elp, AI" })
 
 -- Navigation
 nnoremap('<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle file tree [e]explorer' })
@@ -261,7 +267,7 @@ end, { desc = "[O]il [f]ile managment" })
 
 -- LSP
 M.common_lsp = function(buffer_number)
-  nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = buffer_number })
+  nnoremap("<leader>cn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = buffer_number })
   nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [a]ction", buffer = buffer_number })
 
   -- Telescope LSP keybinds
@@ -285,6 +291,7 @@ M.default_lsp = function(buffer_number)
   nnoremap("gi", require("telescope.builtin").lsp_implementations,
     { desc = "LSP: [G]oto [I]mplementation", buffer = buffer_number })
   nnoremap("td", vim.lsp.buf.type_definition, { desc = "LSP: [T]ype [d]efinition", buffer = buffer_number })
+  nnoremap("<leader>k", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
 end
 
 -- OmniSharp LSP
@@ -328,7 +335,6 @@ M.which_key = function(wk)
     { "<leader>h",        group = "Harpoon" },
     { "<leader>s",        group = "Search" },
     { "<leader>o",        group = "Obsidian and oil" },
-    { "<leader>l",        group = "Lazy git" },
     { "<leader>gh",       group = "Hunk operations" },
     { "<leader>so",       group = "[S]earch [o]bsidian" },
     -- hidden
@@ -336,7 +342,9 @@ M.which_key = function(wk)
     { "<leader>f",        hidden = true },
     { "<leader><leader>", hidden = true },
     { "<leader>w",        hidden = true },
+    { "<leader>ng",       hidden = true },
     { "<leader>z",        hidden = true },
+    { "<leader>l",        hidden = true },
 
   })
 end
@@ -409,7 +417,6 @@ nnoremap('<leader>ng', neogit.open, { desc = 'Neogit' })
 nnoremap('<leader>gc', ':Neogit commit<CR>', { desc = 'Neogit Commit', silent = true, noremap = true })
 nnoremap('<leader>gp', ':Neogit pull<CR>', { desc = 'Neogit Pull', silent = true, noremap = true })
 nnoremap('<leader>gP', ':Neogit push<CR>', { desc = 'Neogit Push', silent = true, noremap = true })
--- nnoremap('<leader>sgb', telescope_b.git_branches, { desc = '[S]earch [g]it [b]ranches', silent = true, noremap = true })
 
 -- Dap
 local dap = require('dap')
@@ -424,7 +431,6 @@ nnoremap('<F7>', dapui.toggle, { desc = 'Debug: See last session result' })
 
 -- Treesitter
 local ts_incremental_selection = require('nvim-treesitter.incremental_selection')
-
 nnoremap('<c-space>', ts_incremental_selection.init_selection, { desc = 'Treesitter: Init selection' })
 vnoremap('<c-space>', ts_incremental_selection.node_incremental, { desc = 'Treesitter: Node incremental' })
 

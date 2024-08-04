@@ -7,5 +7,5 @@
     extraConfig = builtins.readFile ./wezterm/wezterm.lua;
   };
 
-  home.file.".config/wezterm/session_manager.lua".source = ./wezterm/session_manager.lua;
+  home.file.".config/wezterm/wezterm-session-manager/session-manager.lua".source = ./wezterm/session-manager.lua;
 }
