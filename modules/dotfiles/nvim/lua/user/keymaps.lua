@@ -227,8 +227,8 @@ M.harpoon = function(harpoon)
   nnoremap("<leader>h3", function() harpoon:list():select(3) end, { desc = 'Go to 3' })
   nnoremap("<leader>h4", function() harpoon:list():select(4) end, { desc = 'Go to 4' })
 
-  nnoremap("<C-S-P>", function() harpoon:list():prev() end)
-  nnoremap("<C-S-N>", function() harpoon:list():next() end)
+  nnoremap("<leader>hp", function() harpoon:list():prev() end)
+  nnoremap("<leader>hn", function() harpoon:list():next() end)
 
   local conf = require("telescope.config").values
   local function toggle_telescope(harpoon_files)
@@ -267,7 +267,7 @@ end, { desc = "[O]il [f]ile managment" })
 
 -- LSP
 M.common_lsp = function(buffer_number)
-  nnoremap("<leader>cn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = buffer_number })
+  nnoremap("<leader>cr", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = buffer_number })
   nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [a]ction", buffer = buffer_number })
 
   -- Telescope LSP keybinds

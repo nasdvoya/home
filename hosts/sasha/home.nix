@@ -14,7 +14,7 @@ let
     neovim fzf fd ripgrep 
     nil rustc cargo
     lua-language-server lua
-    yarn nodejs_22 gcc
+    yarn nodejs_22 gcc google-chrome
   ];
 in
 
@@ -53,5 +53,6 @@ in
       command = "wezterm-gui start --always-new-process";
       name = "Close window";
     };
+
   };
 }
