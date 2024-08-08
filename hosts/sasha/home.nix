@@ -15,6 +15,7 @@ let
     nil rustc cargo
     lua-language-server lua
     yarn nodejs_22 gcc google-chrome
+    mqttui just
   ];
 in
 
