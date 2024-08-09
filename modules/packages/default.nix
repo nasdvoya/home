@@ -9,7 +9,7 @@
     ./lazygit.nix
     ./wezterm.nix
     ./atuin.nix
-    # ./neovim.nix
+    ./yazi.nix
     ./vscode.nix
   ];
 }
