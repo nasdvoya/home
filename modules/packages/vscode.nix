@@ -27,7 +27,7 @@ let
   );
 in
 
-{
+  {
   programs.vscode = {
     enable = true;
     package =
@@ -40,7 +40,7 @@ in
               --prefix PATH : "~/.dotnet/tools"
           '';
       })).fhsWithPackages
-        (ps: deps ps);
+      (ps: deps ps);
     extensions = [ ];
   };
 }
