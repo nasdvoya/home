@@ -307,6 +307,9 @@ M.omnisharp = function(buffer_number)
     { desc = "LSP: [t]ype [d]efinition", buffer = buffer_number })
 end
 
+-- DocsView Toggle
+nnoremap("<leader>ct", "<cmd>DocsViewToggle<CR>", { desc = "Toggle docs view" })
+
 -- Obsidian
 vim.keymap.set("n", "<leader>on", function()
   vim.cmd("ObsidianTemplate note")

@@ -33,31 +33,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.colorcolumn = ""
   end,
 })
-
--- Group for LSP documentation in side buffer
-local lsp_doc_group = vim.api.nvim_create_augroup("lsp_doc_in_side_buffer", { clear = true })
-vim.api.nvim_create_autocmd("CursorHold", {
-  group = lsp_doc_group,
-  pattern = "*",
-  desc = "Open documentation in a side buffer on cursor hold",
-  callback = function()
-    -- Function to open documentation in a side buffer
-    local function open_doc_in_side_buffer()
-      local bufnr = vim.api.nvim_get_current_buf()
-
-      -- Use `vim.lsp.buf.hover` to get the documentation
-      vim.lsp.buf.hover()
-
-      -- Open a vertical split for the documentation
-      vim.cmd('vsplit')
-
-      -- Move the documentation to the new split
-      vim.api.nvim_command('wincmd L')
-
-      -- Set the buffer for the vertical split to the current buffer
-      vim.api.nvim_set_current_buf(bufnr)
-    end
-
-    open_doc_in_side_buffer()
-  end,
-})

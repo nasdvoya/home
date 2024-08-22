@@ -1,5 +1,15 @@
 return {
   {
+    -- Documentation split
+    "amrbashir/nvim-docs-view",
+    lazy = true,
+    cmd = "DocsViewToggle",
+    opts = {
+      position = "right",
+      width = 60
+    }
+  },
+  {
     -- Autopairs
     'windwp/nvim-autopairs',
     event = "InsertEnter",
