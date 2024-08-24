@@ -1,46 +1,57 @@
 {
-  description = "NixOS configuration";
+  description = "Unified NixOS configuration for both sasha and nasdvoya";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, ... }: 
+  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, nixos-wsl, ... }: 
     let 
-      system ="x86_64-linux";
+      system = "x86_64-linux";
       lib = nixpkgs.lib;
-      # pkgs = nixpkgs.legacyPackages.${system};
-      # pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       pkgs = import nixpkgs { system = system; config.allowUnfree = true; };
-      pkgs-unstable = import nixpkgs-unstable { system = system; config.allowUnfree = true; };   
-      username = "sasha";
-    in
-  {
-    nixosConfigurations = {
-        ${username} = nixpkgs.lib.nixosSystem {
-        system = system;
-        modules = [
-          ./hosts/sasha/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./hosts/${username}/home.nix;
-	    home-manager.extraSpecialArgs = { 
-              inherit inputs;
-              inherit username;
-              inherit pkgs-unstable;
-              inherit pkgs;
-            };
+      pkgs-unstable = import nixpkgs-unstable { system = system; config.allowUnfree = true; };
+    in {
+      nixosConfigurations = {
+        sasha = lib.nixosSystem {
+          system = system;
+          modules = [
+            ./hosts/sasha/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.sasha = import ./hosts/sasha/home.nix;
+              home-manager.extraSpecialArgs = {
+                inherit inputs pkgs pkgs-unstable;
+                username = "sasha";
+              };
+            }
+          ];
+        };
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
-        ];
+        nasdvoya = lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/nasdvoya/configuration.nix
+            nixos-wsl.nixosModules.wsl
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.nasdvoya = import ./hosts/nasdvoya/home.nix;
+              home-manager.extraSpecialArgs = {
+                inherit inputs pkgs pkgs-unstable;
+                username = "nasdvoya";
+              };
+            }
+          ];
+        };
       };
-    };
   };
 }
