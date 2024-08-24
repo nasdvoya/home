@@ -1,14 +1,13 @@
 return {
   -- Theme
   {
-    "EdenEast/nightfox.nvim",
+    "steguiosaur/fullerene.nvim",
     config = function()
-      require("nightfox").setup({
+      require("fullerene").setup({
         options = {
-          transparent = true,
         },
       })
-      vim.cmd [[colorscheme carbonfox]]
+      vim.cmd [[colorscheme fullerene]]
     end
   },
   {
@@ -17,7 +16,7 @@ return {
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'carbonfox',
+        theme = 'fullerene',
         component_separators = '|',
         section_separators = '',
       },
