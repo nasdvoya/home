@@ -58,13 +58,7 @@ return {
       -- Ensure the servers above are installed
       local mason_lspconfig = require 'mason-lspconfig'
 
-      mason_lspconfig.setup {
-        -- ensure_installed = vim.tbl_keys(servers),
-      }
-
-      require'lspconfig'.rust_analyzer.setup{
-       -- cmd = "/full/path/to/rust-analyzer",
-      }
+      require'lspconfig'.rust_analyzer.setup{     }
 
       mason_lspconfig.setup_handlers {
         function(server_name)
