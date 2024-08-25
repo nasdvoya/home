@@ -46,7 +46,9 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("supermaven-nvim").setup({
-        accept_suggestion = "<C-CR>",
+        keymaps = {
+          accept_suggestion = "<C-CR>"
+        },
         color = {
           suggestion_color = "#6d7f8b",
           cterm = 244,
