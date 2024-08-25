@@ -5,9 +5,9 @@ let
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
   stablePkgs = with pkgs; [
     xclip zip unzip zoxide
-    ranger xdotool firefox
+    ranger xdotool 
     appimage-run obsidian
-    
+    wslu
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [

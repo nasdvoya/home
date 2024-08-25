@@ -250,15 +250,6 @@ M.harpoon = function(harpoon)
   nnoremap("<C-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
 end
 
--- AI
-inoremap("<C-CR>", function()
-  return vim.fn["codeium#Accept"]()
-end, { expr = true, silent = true, desc = "AI chat accept" })
-
-nnoremap("<leader>ch", function()
-  return vim.fn["codeium#Chat"]()
-end, { expr = true, silent = true, desc = " [C]ode [H]elp, AI" })
-
 -- Navigation
 nnoremap('<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle file tree [e]explorer' })
 nnoremap("<leader>oi", function()

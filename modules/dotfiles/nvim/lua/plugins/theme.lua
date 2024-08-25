@@ -1,13 +1,14 @@
 return {
   -- Theme
   {
-    "steguiosaur/fullerene.nvim",
+    "EdenEast/nightfox.nvim",
     config = function()
-      require("fullerene").setup({
+      require("nightfox").setup({
         options = {
+          transparent = true,
         },
       })
-      vim.cmd [[colorscheme fullerene]]
+      vim.cmd [[colorscheme terafox]]
     end
   },
   {
@@ -16,7 +17,7 @@ return {
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'fullerene',
+        theme = 'terafox',
         component_separators = '|',
         section_separators = '',
       },

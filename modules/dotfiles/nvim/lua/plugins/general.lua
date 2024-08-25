@@ -42,18 +42,16 @@ return {
     end,
   },
   {
-    {
-      "Exafunction/codeium.vim",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "hrsh7th/nvim-cmp",
-      },
-      commit = "289eb724e5d6fab2263e94a1ad6e54afebefafb2",
-      event = "BufEnter",
-      config = function()
-        -- not using tab to complete
-        vim.g.codeium_disable_bindings = 1
-      end,
-    },
-  }
+    "supermaven-inc/supermaven-nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("supermaven-nvim").setup({
+        accept_suggestion = "<C-CR>",
+        color = {
+          suggestion_color = "#6d7f8b",
+          cterm = 244,
+        },
+      })
+    end,
+  },
 }
