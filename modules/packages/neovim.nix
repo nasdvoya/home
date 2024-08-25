@@ -11,6 +11,7 @@
        cargo
        lua-language-server
        lua
+       rust-analyzer
     ];
   };
 }
