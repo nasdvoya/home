@@ -104,7 +104,7 @@ config.keys = {
 config.background = {
   {
     source = {
-      File = "/home/sasha/Pictures/minimal-blue.png",
+      File = "/home/sasha/Pictures/planet.png",
     },
     hsb = {
       hue = 1.0,

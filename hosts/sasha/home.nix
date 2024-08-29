@@ -7,15 +7,16 @@ let
     xclip zip unzip zoxide
     ranger xdotool firefox
     appimage-run obsidian
-    
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "VictorMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [
     neovim fzf fd ripgrep 
     nil rustc cargo
     lua-language-server lua
     yarn nodejs_22 gcc google-chrome
-    mqttui just
+    mqttui just commit-mono
+    mqtt-explorer
   ];
 in
 
