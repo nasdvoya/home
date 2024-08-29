@@ -7,8 +7,6 @@
       fd
       fzf
       nil
-      rustc
-      cargo
       lua-language-server
       lua
       rust-analyzer
