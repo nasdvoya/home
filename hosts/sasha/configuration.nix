@@ -91,7 +91,7 @@
   users.users.sasha = {
     isNormalUser = true;
     description = "Sasha";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
     packages = with pkgs; [];
   };
 
