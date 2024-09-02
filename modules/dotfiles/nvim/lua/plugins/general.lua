@@ -1,5 +1,9 @@
 return {
   {
+    "NoahTheDuke/vim-just",
+    ft = { "just" },
+  },
+  {
     -- Documentation split
     "amrbashir/nvim-docs-view",
     lazy = true,
