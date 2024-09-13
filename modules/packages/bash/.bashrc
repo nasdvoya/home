@@ -112,6 +112,4 @@ export EDITOR=nvim
 # Terminal tools
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
-# Run nix flake when changing dir to specific projects
-PROMPT_COMMAND=development-environment
 
