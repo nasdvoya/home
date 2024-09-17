@@ -17,7 +17,7 @@ let
     yarn nodejs_22 gcc google-chrome
     mqttui just commit-mono
     mqtt-explorer usbutils
-    tree
+    tree cachix
   ];
 in
 
