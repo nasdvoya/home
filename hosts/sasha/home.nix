@@ -12,7 +12,7 @@ let
   ];
   unstablePkgs = with pkgs-unstable; [
     neovim fzf fd ripgrep 
-    nil 
+    nil unison-ucm
     lua-language-server lua
     yarn nodejs_22 gcc google-chrome
     mqttui just commit-mono

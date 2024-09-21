@@ -1,5 +1,17 @@
 return {
   {
+    -- Unison
+    "unisonweb/unison",
+    branch = "trunk",
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. "/editor-support/vim")
+      require("lazy.core.loader").packadd(plugin.dir .. "/editor-support/vim")
+    end,
+    init = function(plugin)
+      require("lazy.core.loader").ftdetect(plugin.dir .. "/editor-support/vim")
+    end,
+  },
+  {
     -- Better lsp tools for omnisharp
     'Hoffs/omnisharp-extended-lsp.nvim'
   },
@@ -19,8 +31,8 @@ return {
     },
     config = function()
       local keymaps = require("user.keymaps")
-      local on_attach = function(_, buffer_number)
-        if _.name == "omnisharp" then
+      local on_attach = function(client, buffer_number)
+        if client.name == "omnisharp" then
           keymaps.omnisharp(buffer_number)
         else
           keymaps.default_lsp(buffer_number)
@@ -57,7 +69,7 @@ return {
       -- Ensure the servers above are installed
       local mason_lspconfig = require 'mason-lspconfig'
 
-      require'lspconfig'.rust_analyzer.setup {}
+      require 'lspconfig'.rust_analyzer.setup {}
 
       mason_lspconfig.setup {
         ensure_installed = vim.tbl_keys(servers),
@@ -72,6 +84,30 @@ return {
             filetypes = (servers[server_name] or {}).filetypes,
           }
         end
+      }
+
+      -- Manually setup Unison LSP as it's not part of Mason
+      require('lspconfig')['unison'].setup {
+        on_attach = function(client, bufnr)
+          vim.o.signcolumn = 'yes'
+          vim.o.updatetime = 250
+          vim.diagnostic.config({ virtual_text = false })
+
+          vim.api.nvim_create_autocmd("CursorHold", {
+            buffer = bufnr,
+            callback = function()
+              local opts = {
+                focusable = false,
+                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                border = 'rounded',
+                source = 'always',
+                prefix = ' ',
+                scope = 'cursor',
+              }
+              vim.diagnostic.open_float(nil, opts)
+            end,
+          })
+        end,
       }
     end,
   }

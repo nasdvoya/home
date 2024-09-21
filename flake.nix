@@ -7,14 +7,25 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.url = "github:nix-community/nixos-wsl";
+    unison-lang = {
+      url = "github:ceedubs/unison-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, nixos-wsl, ... }: 
+  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, nixos-wsl, unison-lang, ... }:
     let 
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs = import nixpkgs { system = system; config.allowUnfree = true; };
-      pkgs-unstable = import nixpkgs-unstable { system = system; config.allowUnfree = true; };
+      pkgs = import nixpkgs { 
+        system = system; 
+        config.allowUnfree = true;
+        overlays = [ unison-lang.overlay ];
+      };
+      pkgs-unstable = import nixpkgs-unstable { 
+        system = system; 
+        config.allowUnfree = true;
+      };
     in {
       nixosConfigurations = {
         sasha = lib.nixosSystem {
