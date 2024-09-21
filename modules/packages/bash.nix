@@ -24,6 +24,7 @@
       notes = "obsidian --ozone-platform=wayland";
       mqtt = "/home/$(whoami)/Apps/MQTTExplorer.AppImage";
       # SSH
+      ssh-docs = "ssh -i ~/.ssh/sasha_d_ocean root@192.168.100.3";
       ssh-rita = "ssh -i ~/.ssh/sasha_d_ocean root@192.168.100.5";
       ssh-backend = "ssh -i ~/.ssh/sasha_d_ocean root@192.168.100.4";
       ssh-frontend = "ssh -i ~/.ssh/sasha_d_ocean root@192.168.100.6";

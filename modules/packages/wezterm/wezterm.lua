@@ -101,20 +101,20 @@ config.keys = {
   { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
 }
 -- Background settings
-config.background = {
-  {
-    source = {
-      File = "/home/sasha/Pictures/planet.png",
-    },
-    hsb = {
-      hue = 1.0,
-      saturation = 1.02,
-      brightness = 0.25,
-    },
-    width = "100%",
-    height = "100%",
-  }
-}
+-- config.background = {
+--   {
+--     source = {
+--       File = "/home/sasha/Pictures/planet.png",
+--     },
+--     hsb = {
+--       hue = 1.0,
+--       saturation = 1.02,
+--       brightness = 0.25,
+--     },
+--     width = "100%",
+--     height = "100%",
+--   }
+-- }
 
 config.inactive_pane_hsb = {
   saturation = 0.9,
@@ -241,8 +241,36 @@ local themes = {
   onedark = "One Dark (Gogh)",
 }
 local success, stdout, stderr = wezterm.run_child_process({ os.getenv("SHELL"), "-c", "printenv WEZTERM_THEME" })
-local selected_theme = stdout:gsub("%s+", "") -- Remove all whitespace characters including newline
-config.color_scheme = themes[selected_theme] or "carbonfox"
+-- local selected_theme = stdout:gsub("%s+", "") -- Remove all whitespace characters including newline
+-- config.color_scheme = themes[selected_theme] or "melange"
 config.hide_mouse_cursor_when_typing = false
-
+config.colors = {
+  foreground    = "#ECE1D7",
+  background    = "#292522",
+  cursor_bg     = "#ECE1D7",
+  cursor_border = "#ECE1D7",
+  cursor_fg     = "#292522",
+  selection_bg  = "#403A36",
+  selection_fg  = "#ECE1D7",
+  ansi          = {
+    "#34302C",
+    "#BD8183",
+    "#78997A",
+    "#E49B5D",
+    "#7F91B2",
+    "#B380B0",
+    "#7B9695",
+    "#C1A78E"
+  },
+  brights       = {
+    "#867462",
+    "#D47766",
+    "#85B695",
+    "#EBC06D",
+    "#A3A9CE",
+    "#CF9BC2",
+    "#89B3B6",
+    "#ECE1D7"
+  }
+}
 return config

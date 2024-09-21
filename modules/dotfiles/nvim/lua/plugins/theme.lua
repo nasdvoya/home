@@ -1,14 +1,9 @@
 return {
   -- Theme
   {
-    "EdenEast/nightfox.nvim",
+    "savq/melange-nvim",
     config = function()
-      require("nightfox").setup({
-        options = {
-          transparent = true,
-        },
-      })
-      vim.cmd [[colorscheme carbonfox]]
+      vim.cmd [[colorscheme melange]]
     end
   },
   {
@@ -17,7 +12,7 @@ return {
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'carbonfox',
+        theme = "melange",
         component_separators = '|',
         section_separators = '',
       },
@@ -25,7 +20,6 @@ return {
   },
   {
     "shellRaining/hlchunk.nvim",
-
     config = function()
       require("hlchunk").setup({
         chunk = {
