@@ -41,40 +41,5 @@ return {
       -- Enable telescope fzf native, if installed
       pcall(telescope.load_extension, 'fzf')
     end,
-  },
-  {
-    -- File explorer using buffer
-    "stevearc/oil.nvim",
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      local oil = require("oil")
-      local keymaps = require("user.keymaps")
-
-      oil.setup({
-        view_options = {
-          show_hidden = true,
-        },
-      })
-    end,
-  },
-  {
-    -- File explorer
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-      "3rd/image.nvim",
-    },
-    config = function()
-      require("neo-tree").setup({
-        window = {
-          position = "right"
-        }
-      })
-    end
   }
 }

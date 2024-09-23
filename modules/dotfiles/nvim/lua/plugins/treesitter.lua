@@ -23,7 +23,11 @@ return {
           'c_sharp',
           'json',
           'nix',
-          'html'
+          'html',
+          'yaml',
+          'toml',
+          'dockerfile',
+          'just',
         },
 
         auto_install = true,
@@ -37,10 +41,7 @@ return {
         textobjects = {
           select = {
             enable = true,
-            lookahead = true,
-            keymaps = {
-              -- Add your textobject keymaps here
-            },
+            lookahead = true
           },
         },
       }

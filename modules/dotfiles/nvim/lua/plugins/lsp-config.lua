@@ -1,26 +1,5 @@
 return {
   {
-    -- Unison
-    "unisonweb/unison",
-    branch = "trunk",
-    config = function(plugin)
-      vim.opt.rtp:append(plugin.dir .. "/editor-support/vim")
-      require("lazy.core.loader").packadd(plugin.dir .. "/editor-support/vim")
-    end,
-    init = function(plugin)
-      require("lazy.core.loader").ftdetect(plugin.dir .. "/editor-support/vim")
-    end,
-  },
-  {
-    -- Better lsp tools for omnisharp
-    'Hoffs/omnisharp-extended-lsp.nvim'
-  },
-  {
-    -- Better lsp diagnostics
-    'dgagn/diagflow.nvim',
-    opts = {}
-  },
-  {
     -- LSP
     'neovim/nvim-lspconfig',
     dependencies = {
