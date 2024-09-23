@@ -1,8 +1,6 @@
 local nnoremap = require("user.keymaps-helper").nnoremap
 local vnoremap = require("user.keymaps-helper").vnoremap
-local inoremap = require("user.keymaps-helper").inoremap
 local tnoremap = require("user.keymaps-helper").tnoremap
-local xnoremap = require("user.keymaps-helper").xnoremap
 
 local M = {}
 
@@ -17,31 +15,28 @@ nnoremap("U", "<C-r>", { desc = "Redo the last undone change" })
 nnoremap("<leader>w", "<cmd>w<cr>", { silent = false, desc = "Save current buffer" })
 nnoremap("<leader>q", "<cmd>q<cr>", { silent = false, desc = "Quit current buffer" })
 nnoremap("<leader>z", "<cmd>wq<cr>", { silent = false, desc = "Save and quit current buffer" })
-
 nnoremap('k', "v:count == 0 ? 'gk' : 'k'",
   { expr = true, silent = true, desc = "Move up visually with 'k', handle wrapped lines" })
 nnoremap('j', "v:count == 0 ? 'gj' : 'j'",
   { expr = true, silent = true, desc = "Move down visually with 'j', handle wrapped lines" })
-
--- Center buffer while navigating
-nnoremap("<C-u>", "<C-u>zz", { desc = "Scroll up and center buffer" })
-nnoremap("<C-d>", "<C-d>zz", { desc = "Scroll down and center buffer" })
-nnoremap("N", "Nzz", { desc = "Move to previous search match and center buffer" })
-nnoremap("n", "nzz", { desc = "Move to next search match and center buffer" })
-nnoremap("G", "Gzz", { desc = "Move to end of file and center buffer" })
-nnoremap("gg", "ggzz", { desc = "Move to beginning of file and center buffer" })
-
--- Find stuff (:noh clears). Need better keymap for this
-nnoremap("%", "%zz", { desc = "Jump to matching pair and center buffer" })
-nnoremap("*", "*zz", { desc = "Search forward for word under cursor and center buffer" })
-nnoremap("#", "#zz", { desc = "Search backward for word under cursor and center buffer" })
-
--- Press 'S' for quick find/replace for the word under the cursor
+-- Find/replacs
 nnoremap("S", function()
   local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
   local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
   vim.api.nvim_feedkeys(keys, "n", false)
 end)
+
+-- Visual --
+vnoremap("<space>", "<nop>", { desc = "Disable Space bar" })
+vnoremap("L", "$<left>", { desc = "Move to end of line and adjust cursor left" })
+vnoremap("H", "^", { desc = "Move to beginning of line" })
+vnoremap("<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down and reselect" })
+vnoremap("<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up and reselect" })
+
+-- Terminal --
+-- Enter normal mode while in a terminal
+tnoremap("<esc>", [[<C-\><C-n>]], { desc = "Terminal: Exit to normal mode" })
+tnoremap("<space>", "<space>", { desc = "Terminal: Reenable default space functionality" })
 
 -- Diagnostics
 function YankDiagnosticError()
@@ -56,82 +51,17 @@ end
 
 -- Mapping the function to a key combination
 nnoremap('<leader>dy', ":lua YankDiagnosticError()<CR>", { desc = 'Yank diagnostic error' })
-
-nnoremap('<leader>dl', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
-nnoremap('<leader>dna', function()
-  vim.diagnostic.goto_next({})
-  vim.api.nvim_feedkeys("zz", "n", false)
-end, { desc = 'Goto [n]ext diagnostic of [a]ny severity' })
-
-nnoremap('<leader>dpa', function()
-  vim.diagnostic.goto_pev({})
-  vim.api.nvim_feedkeys("zz", "n", false)
-end, { desc = 'Goto [p]revious diagnostic of [a]ny severity' })
-
 nnoremap("<leader>dn", function()
   vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
   vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = 'Goto [n]ext error' })
-
 nnoremap("<leader>dp", function()
   vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
   vim.api.nvim_feedkeys("zz", "n", false)
 end, { desc = 'Goto [p]revious error' })
 
-nnoremap('<leader>dnw', function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
-  vim.api.nvim_feedkeys("zz", "n", false)
-end, { desc = 'Goto [n]ext [w]arning' })
-
-nnoremap('<leader>dpw', function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
-  vim.api.nvim_feedkeys("zz", "n", false)
-end, { desc = 'Goto [p]revious [w]arning' })
-
-nnoremap("<leader>do", function()
-  vim.diagnostic.open_float({
-    border = "rounded",
-  })
-end, { desc = 'Diagnostic under cursor' })
-
--- Press leader f to format
-nnoremap("<leader>f", ":Format<cr>")
--- Press gx to open the link under the cursor
-nnoremap("gx", ":sil !open <cWORD><cr>", { silent = true })
--- Visual --
-vnoremap("<space>", "<nop>", { desc = "Disable Space bar" })
--- Press 'H', 'L' to jump to start/end of a line (first/last char)
-vnoremap("L", "$<left>", { desc = "Move to end of line and adjust cursor left" })
-vnoremap("H", "^", { desc = "Move to beginning of line" })
-vnoremap("<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down and reselect" })
-vnoremap("<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up and reselect" })
-
--- Terminal --
--- Enter normal mode while in a terminal
-tnoremap("<esc>", [[<C-\><C-n>]], { desc = "Terminal: Exit to normal mode" })
-tnoremap("jj", [[<C-\><C-n>]], { desc = "Terminal: Exit to normal mode with jj" })
-tnoremap('<C-q>', '<C-\\><C-n>', { desc = "Terminal: Quit terminal mode and enter normal mode" })
-tnoremap('<A-t>', '<C-\\><C-n>:q<CR>', { desc = "Terminal: Quit the terminal window" })
-tnoremap("<C-h>", [[<Cmd>wincmd h<CR>]], { desc = "Terminal: Navigate to left window" })
-tnoremap("<C-j>", [[<Cmd>wincmd j<CR>]], { desc = "Terminal: Navigate to below window" })
-tnoremap("<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "Terminal: Navigate to above window" })
-tnoremap("<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Terminal: Navigate to right window" })
-tnoremap("<space>", "<space>", { desc = "Terminal: Reenable default space functionality" })
 
 -- Plugins --
-
--- Git keymaps
-nnoremap("<leader>gb", ":Gitsigns toggle_current_line_blame<cr>")
-nnoremap("<leader>gf", function()
-  local cmd = {
-    "sort",
-    "-u",
-    "<(git diff --name-only --cached)",
-    "<(git diff --name-only)",
-    "<(git diff --name-only --diff-filter=U)",
-  }
-end, { desc = "Search [g]it [f]iles" })
 
 -- Telescope keybinds
 local telescope_b = require('telescope.builtin')
@@ -158,12 +88,6 @@ nnoremap("<leader>/", function()
     winblend = 10,
   }))
 end, { desc = "[/] Fuzzily search in current buffer]" })
-
-nnoremap("<leader>ss", function()
-  telescope_b.spell_suggest(require("telescope.themes").get_dropdown({
-    previewer = false,
-  }))
-end, { desc = "[S]earch [s]pelling suggestions" })
 
 -- Completion
 M.completion = function(cmp, luasnip)
@@ -194,60 +118,6 @@ M.completion = function(cmp, luasnip)
       end
     end, { 'i', 's' }),
   }
-end
-
--- Oil
-M.oil = function()
-  return {
-    ["g?"] = "actions.show_help",
-    ["<CR>"] = "actions.select",
-    ["<C-\\>"] = "actions.select_split",
-    ["<C-enter>"] = "actions.select_vsplit",
-    ["<C-t>"] = "actions.select_tab",
-    ["<C-p>"] = "actions.preview",
-    ["<C-c>"] = "actions.close",
-    ["<C-r>"] = "actions.refresh",
-    ["-"] = "actions.parent",
-    ["_"] = "actions.open_cwd",
-    ["`"] = "actions.cd",
-    ["~"] = "actions.tcd",
-    ["gs"] = "actions.change_sort",
-    ["gx"] = "actions.open_external",
-    ["g."] = "actions.toggle_hidden",
-  }
-end
-
--- Harpoon
-M.harpoon = function(harpoon)
-  nnoremap("<leader>ha", function() harpoon:list():append() end, { desc = 'Add mark' })
-  nnoremap("<leader>hd", function() harpoon:list():remove() end, { desc = 'Remove mark' })
-
-  nnoremap("<leader>h1", function() harpoon:list():select(1) end, { desc = 'Go to 1' })
-  nnoremap("<leader>h2", function() harpoon:list():select(2) end, { desc = 'Go to 2' })
-  nnoremap("<leader>h3", function() harpoon:list():select(3) end, { desc = 'Go to 3' })
-  nnoremap("<leader>h4", function() harpoon:list():select(4) end, { desc = 'Go to 4' })
-
-  nnoremap("<leader>hp", function() harpoon:list():prev() end)
-  nnoremap("<leader>hn", function() harpoon:list():next() end)
-
-  local conf = require("telescope.config").values
-  local function toggle_telescope(harpoon_files)
-    local file_paths = {}
-    for _, item in ipairs(harpoon_files.items) do
-      table.insert(file_paths, item.value)
-    end
-
-    require("telescope.pickers").new({}, {
-      prompt_title = "Harpoon",
-      finder = require("telescope.finders").new_table({
-        results = file_paths,
-      }),
-      previewer = conf.file_previewer({}),
-      sorter = conf.generic_sorter({}),
-    }):find()
-  end
-
-  nnoremap("<C-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
 end
 
 -- Navigation
@@ -298,7 +168,7 @@ M.omnisharp = function(buffer_number)
     { desc = "LSP: [t]ype [d]efinition", buffer = buffer_number })
 end
 
--- DocsView Toggle
+-- Documentantion Toggle
 nnoremap("<leader>ct", "<cmd>DocsViewToggle<CR>", { desc = "Toggle docs view" })
 
 -- Obsidian
@@ -322,11 +192,10 @@ end, { desc = '[S]earch [o]bsidian notes' })
 M.which_key = function(wk)
   wk.add({
     -- Top-level groups
-    { "<leader>c",        group = "Code" },
+    { "<leader>c",        group = "Code actions" },
     { "<leader>d",        group = "Diagnostic" },
     { "<leader>g",        group = "Git" },
     { "<leader>gt",       group = "Git [T]oggles" },
-    { "<leader>h",        group = "Harpoon" },
     { "<leader>s",        group = "Search" },
     { "<leader>o",        group = "Obsidian and oil" },
     { "<leader>gh",       group = "Hunk operations" },
@@ -345,50 +214,8 @@ end
 
 -- Gitsigns
 M.gitsigns = function(gs, bufnr)
-  local function map(mode, l, r, opts)
-    opts = opts or {}
-    opts.buffer = bufnr
-    vim.keymap.set(mode, l, r, opts)
-  end
-
-  -- Navigation
-  map({ 'n', 'v' }, ']c', function()
-    if vim.wo.diff then
-      return ']c'
-    end
-    vim.schedule(function()
-      gs.next_hunk()
-    end)
-    return '<Ignore>'
-  end, { expr = true, desc = 'Jump to next hunk' })
-
-  map({ 'n', 'v' }, '[c', function()
-    if vim.wo.diff then
-      return '[c'
-    end
-    vim.schedule(function()
-      gs.prev_hunk()
-    end)
-    return '<Ignore>'
-  end, { expr = true, desc = 'Jump to previous hunk' })
-
-  -- Actions
-  vnoremap('<leader>gs', function()
-    gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-  end, { desc = 'Stage git hunk' })
-  vnoremap('<leader>gr', function()
-    gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-  end, { desc = 'Reset git hunk' })
-
-  nnoremap('<leader>ghs', gs.stage_hunk, { desc = 'Git stage hunk' })
-  nnoremap('<leader>ghr', gs.reset_hunk, { desc = 'Git reset hunk' })
-  nnoremap('<leader>ghu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
-  nnoremap('<leader>ghp', gs.preview_hunk, { desc = 'Preview git hunk' })
   nnoremap('<leader>gS', gs.stage_buffer, { desc = 'Git Stage buffer' })
   nnoremap('<leader>gR', gs.reset_buffer, { desc = 'Git Reset buffer' })
-  nnoremap('<leader>gb', function()
-    gs.blame_line { full = false }
-  end, { desc = 'Git blame line' })
   nnoremap('<leader>gd', gs.diffthis, { desc = 'Git diff against index' })
   nnoremap('<leader>gD', function()
     gs.diffthis '~'
@@ -397,9 +224,6 @@ M.gitsigns = function(gs, bufnr)
   -- Toggles
   nnoremap('<leader>gtb', gs.toggle_current_line_blame, { desc = 'Toggle git blame line' })
   nnoremap('<leader>gtd', gs.toggle_deleted, { desc = 'Toggle git show deleted' })
-
-  -- Text object
-  map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Select git hunk' })
 end
 
 -- Lazygit

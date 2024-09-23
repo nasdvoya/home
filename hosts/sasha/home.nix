@@ -7,7 +7,6 @@ let
     xclip zip unzip zoxide
     ranger xdotool firefox
     appimage-run obsidian
-
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "VictorMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [

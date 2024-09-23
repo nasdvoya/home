@@ -53,8 +53,6 @@ return {
       local keymaps = require("user.keymaps")
 
       oil.setup({
-        use_default_keymaps = false,
-        keymaps = keymaps.oil(),
         view_options = {
           show_hidden = true,
         },
@@ -78,17 +76,5 @@ return {
         }
       })
     end
-  },
-  {
-    -- Harpoon
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      local harpoon = require("harpoon")
-      local keymaps = require("user.keymaps")
-      harpoon:setup()
-      keymaps.harpoon(harpoon)
-    end,
   }
 }
