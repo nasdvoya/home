@@ -33,3 +33,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.colorcolumn = ""
   end,
 })
+
+-- Set tabstop for Unison files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "unison",
+  callback = function()
+    vim.opt.tabstop = 2
+    vim.opt.shiftwidth = 2
+    vim.opt.expandtab = true
+  end
+})
