@@ -6,7 +6,7 @@ let
   stablePkgs = with pkgs; [
     xclip zip unzip zoxide
     ranger xdotool firefox
-    appimage-run obsidian
+    appimage-run obsidian pinentry-gnome3
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "VictorMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [

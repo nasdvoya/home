@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-
   dotnet-full =
     with pkgs.dotnetCorePackages;
     combinePackages [

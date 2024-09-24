@@ -11,5 +11,6 @@
     ./atuin.nix
     ./yazi.nix
     ./vscode.nix
+    ./gpg.nix
   ];
 }
