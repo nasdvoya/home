@@ -88,6 +88,13 @@ return {
           })
         end,
       }
+      -- Manually setup gopls
+      require('lspconfig')['gopls'].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {},
+        filetypes = { 'go' },
+      }
     end,
   }
 }
