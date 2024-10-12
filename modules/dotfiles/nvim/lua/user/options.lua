@@ -42,4 +42,4 @@ vim.opt.cursorline = true
 
 -- Window-local options
 vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false

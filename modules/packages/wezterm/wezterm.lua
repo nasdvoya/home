@@ -47,7 +47,7 @@ config.unix_domains = {
 }
 
 -- keys
-config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.leader = { key = 'Space', mods = 'CTRL|SHIFT', timeout_milliseconds = 1000 }
 config.keys = {
   -- Panes
   { key = "-",          mods = "LEADER", action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
@@ -100,21 +100,6 @@ config.keys = {
   -- Misc
   { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
 }
--- Background settings
--- config.background = {
---   {
---     source = {
---       File = "/home/sasha/Pictures/planet.png",
---     },
---     hsb = {
---       hue = 1.0,
---       saturation = 1.02,
---       brightness = 0.25,
---     },
---     width = "100%",
---     height = "100%",
---   }
--- }
 
 config.inactive_pane_hsb = {
   saturation = 0.9,
@@ -130,45 +115,6 @@ config.colors = {
       fg_color = "#b6b8bb"
     }
   }
-}
-
--- URL highlighting rules
-config.hyperlink_rules = {
-  -- Matches: a URL in parens: (URL)
-  {
-    regex = "\\((\\w+://\\S+)\\)",
-    format = "$1",
-    highlight = 1,
-  },
-  -- Matches: a URL in brackets: [URL]
-  {
-    regex = "\\[(\\w+://\\S+)\\]",
-    format = "$1",
-    highlight = 1,
-  },
-  -- Matches: a URL in curly braces: {URL}
-  {
-    regex = "\\{(\\w+://\\S+)\\}",
-    format = "$1",
-    highlight = 1,
-  },
-  -- Matches: a URL in angle brackets: <URL>
-  {
-    regex = "<(\\w+://\\S+)>",
-    format = "$1",
-    highlight = 1,
-  },
-  -- Then handle URLs not wrapped in brackets
-  {
-    regex = "[^(]\\b(\\w+://\\S+[)/a-zA-Z0-9-]+)",
-    format = "$1",
-    highlight = 1,
-  },
-  -- Implicit mailto link
-  {
-    regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b",
-    format = "mailto:$0",
-  },
 }
 
 -- Event handling for startup and font adjustment
@@ -235,14 +181,7 @@ function readjust_font_size(window, pane)
   end
 end
 
--- Apply color scheme based on the WEZTERM_THEME environment variable
-local themes = {
-  nord = "Nord (Gogh)",
-  onedark = "One Dark (Gogh)",
-}
 local success, stdout, stderr = wezterm.run_child_process({ os.getenv("SHELL"), "-c", "printenv WEZTERM_THEME" })
--- local selected_theme = stdout:gsub("%s+", "") -- Remove all whitespace characters including newline
--- config.color_scheme = themes[selected_theme] or "melange"
 config.hide_mouse_cursor_when_typing = false
 config.colors = {
   foreground    = "#ECE1D7",
