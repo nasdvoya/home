@@ -7,7 +7,8 @@ let
     xclip zip unzip zoxide
     ranger xdotool 
     appimage-run obsidian
-    wslu
+    wslu 
+    cobra-cli # go cli tool
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [

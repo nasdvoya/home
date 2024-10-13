@@ -47,7 +47,7 @@ config.unix_domains = {
 }
 
 -- keys
-config.leader = { key = ',', mods = 'ALT' }
+config.leader = { key = 'a', mods = 'ALT' }
 config.keys = {
   -- Panes
   { key = '-',          mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
