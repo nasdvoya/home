@@ -7,6 +7,7 @@ let
     xclip zip unzip zoxide
     ranger xdotool firefox
     appimage-run obsidian pinentry-gnome3
+    libreoffice
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "VictorMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [
