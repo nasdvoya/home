@@ -47,7 +47,7 @@ config.unix_domains = {
 }
 
 -- keys
-config.leader = { key = 'a', mods = 'ALT' }
+config.leader = { key = 'q', mods = 'ALT' }
 config.keys = {
   -- Panes
   { key = '-',          mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
@@ -98,7 +98,7 @@ config.keys = {
     },
   },
   -- Misc
-  { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
+  { key = 'v', mods = 'LEADER', action = act.ActivateCopyMode },
 }
 
 config.inactive_pane_hsb = {
