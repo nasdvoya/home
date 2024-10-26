@@ -26,6 +26,7 @@ in
     ../../modules/packages
     ../../modules/dotfiles
     ../../tools/script-builder.nix
+    ./git.nix
   ];
 
   home.username = "sasha";
