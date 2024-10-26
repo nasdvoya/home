@@ -4,7 +4,7 @@
   imports = [
     ./starship.nix
     ./alacritty.nix
-    ./git.nix
+    # ./git.nix
     ./bash.nix
     ./lazygit.nix
     ./wezterm.nix
