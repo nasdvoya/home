@@ -11,13 +11,18 @@ let
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "VictorMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [
-    neovim fzf fd ripgrep 
-    nil unison-ucm
-    lua-language-server lua
+    neovim fzf fd ripgrep
     yarn nodejs_22 gcc google-chrome
     mqttui just commit-mono
     mqtt-explorer usbutils
     tree cachix slack jetbrains.rust-rover
+
+    # Language Servers
+    lua-language-server lua omnisharp-roslyn
+    vscode-langservers-extracted
+    tailwindcss-language-server
+    nil unison-ucm nixfmt-rfc-style
+    htmx-lsp
   ];
 in
 

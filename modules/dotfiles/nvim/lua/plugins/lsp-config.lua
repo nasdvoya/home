@@ -1,6 +1,5 @@
 return {
   {
-    -- LSP
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim',          config = true },
@@ -10,6 +9,10 @@ return {
     },
     config = function()
       local keymaps = require("user.keymaps")
+      local mason_lspconfig = require 'mason-lspconfig'
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      require('neodev').setup()
       local on_attach = function(client, buffer_number)
         if client.name == "omnisharp" then
           keymaps.omnisharp(buffer_number)
@@ -20,40 +23,15 @@ return {
           vim.lsp.buf.format()
         end, { desc = 'Format current buffer with LSP' })
       end
-
       local servers = {
-        rust_analyzer = {},
-        nil_ls = {},
-        omnisharp = {
-          enable_roslyn_analysers = true,
-          enable_import_completion = true,
-          organize_imports_on_format = true,
-          filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props' },
-        },
-        lua_ls = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-          },
-        },
+        -- default installed servers
       }
-
-      -- Setup neovim lua configuration
-      require('neodev').setup()
-
-      -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-      -- Ensure the servers above are installed
-      local mason_lspconfig = require 'mason-lspconfig'
-
-      require 'lspconfig'.rust_analyzer.setup {}
-
+      -- Mason LSP
       mason_lspconfig.setup {
         ensure_installed = vim.tbl_keys(servers),
       }
 
+      -- Mason LSP Handlers
       mason_lspconfig.setup_handlers {
         function(server_name)
           require('lspconfig')[server_name].setup {
@@ -65,7 +43,72 @@ return {
         end
       }
 
-      -- Manually setup Unison LSP as it's not part of Mason
+      -- Manual setup
+
+      require('lspconfig')['htmx'].setup {
+        cmd = { "htmx-lsp" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {},
+        filetypes = {
+          "aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure", "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb", "eruby",
+          "gohtml", "gohtmltmpl", "haml", "handlebars", "hbs", "html", "htmlangular", "html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx",
+          "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "javascript", "javascriptreact", "reason", "rescript", "typescript",
+          "typescriptreact", "vue", "svelte", "templ"
+        },
+        root_dir = function(fname)
+          return vim.fn.fnamemodify(fname, ':h')
+        end,
+        single_file_support = true,
+      }
+
+      require('lspconfig')['lua_ls'].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+          },
+        },
+        filetypes = { 'lua' },
+      }
+      require('lspconfig')['omnisharp'].setup {
+        cmd = { "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/OmniSharp" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          enable_roslyn_analysers = true,
+          enable_import_completion = true,
+          organize_imports_on_format = true,
+        },
+        filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props' },
+      }
+      require('lspconfig')['nil_ls'].setup {
+        cmd = { "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/nil" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {},
+        filetypes = { 'nix' },
+      }
+      require('lspconfig')['gopls'].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {},
+        filetypes = { 'go' },
+      }
+      require('lspconfig')['html'].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {},
+        filetypes = { 'html', 'htmldjango', 'htmljinja' },
+      }
+      require('lspconfig')['tailwindcss'].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {},
+        filetypes = { 'html' },
+      }
       require('lspconfig')['unison'].setup {
         on_attach = function(client, bufnr)
           vim.o.signcolumn = 'yes'
@@ -87,13 +130,6 @@ return {
             end,
           })
         end,
-      }
-      -- Manually setup gopls
-      require('lspconfig')['gopls'].setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = {},
-        filetypes = { 'go' },
       }
     end,
   }

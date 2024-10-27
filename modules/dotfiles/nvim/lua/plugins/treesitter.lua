@@ -33,7 +33,7 @@ return {
         auto_install = true,
         autotag = { enable = true },
         autopairs = { enable = true },
-        highlight = { enable = true, disable = { "just" } },
+        highlight = { enable = true },
         indent = { enable = true },
         incremental_selection = {
           enable = true,
