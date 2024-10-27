@@ -25,6 +25,8 @@ nnoremap("S", function()
   local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
   vim.api.nvim_feedkeys(keys, "n", false)
 end)
+nnoremap("<leader>ll", ":StartLiveServer<CR>", { desc = "Start live server" })
+nnoremap("<leader>ls", ":StopLiveServer<CR>", { desc = "Stop live server" })
 
 -- Visual --
 vnoremap("<space>", "<nop>", { desc = "Disable Space bar" })

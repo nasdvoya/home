@@ -25,23 +25,24 @@ let
   ];
   unstablePkgs = with pkgs-unstable; [
     neovim
+    google-chrome
+    mqttui
+    commit-mono
+    mqtt-explorer
+    cachix
+    slack
+    jetbrains.rust-rover
+    # Tooling
+    live-server
+    tree
+    just
+    usbutils
     fzf
     fd
     ripgrep
     yarn
     nodejs_22
     gcc
-    google-chrome
-    mqttui
-    just
-    commit-mono
-    mqtt-explorer
-    usbutils
-    tree
-    cachix
-    slack
-    jetbrains.rust-rover
-
     # Language Servers
     lua-language-server
     lua
