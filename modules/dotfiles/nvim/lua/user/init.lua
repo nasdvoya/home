@@ -1,6 +1,6 @@
 require("user.options")
 require("user.lazy")
+require("user.usercommands").setup()
 require("user.keymaps")
 require("user.autocommands")
-require("user.usercommands")
 require("user.keymaps-helper")

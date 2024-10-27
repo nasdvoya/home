@@ -1,6 +1,7 @@
 local nnoremap = require("user.keymaps-helper").nnoremap
 local vnoremap = require("user.keymaps-helper").vnoremap
 local tnoremap = require("user.keymaps-helper").tnoremap
+local usercommands = require("user.usercommands")
 
 local M = {}
 
@@ -202,6 +203,7 @@ M.which_key = function(wk)
     { "<leader>o",        group = "Obsidian and oil" },
     { "<leader>gh",       group = "Hunk operations" },
     { "<leader>so",       group = "[S]earch [o]bsidian" },
+    { "<leader>l",        group = "Lazygit and liver-server" },
     -- hidden
     { "<leader>q",        hidden = true },
     { "<leader>f",        hidden = true },
@@ -209,7 +211,6 @@ M.which_key = function(wk)
     { "<leader>w",        hidden = true },
     { "<leader>ng",       hidden = true },
     { "<leader>z",        hidden = true },
-    { "<leader>l",        hidden = true },
 
   })
 end
