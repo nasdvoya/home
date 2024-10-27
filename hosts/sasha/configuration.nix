@@ -1,14 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ 
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-  
-  programs.nix-ld.enable = true; 
-  nix.gc = { automatic = true; dates = "weekly"; options = "--delete-older-than 7d"; };
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
+
+  programs.nix-ld.enable = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
@@ -91,8 +94,12 @@
   users.users.sasha = {
     isNormalUser = true;
     description = "Sasha";
-    extraGroups = [ "networkmanager" "wheel" "dialout" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "dialout"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -100,7 +107,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = with pkgs; [ ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

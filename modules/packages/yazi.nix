@@ -1,12 +1,17 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.yazi = {
     enable = true;
     settings = {
-	  manager = {
-	    show_hidden = true;
-	  };
-	};
+      manager = {
+        show_hidden = true;
+      };
+    };
   };
 }

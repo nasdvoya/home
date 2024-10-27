@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   programs.git = {
     # Defaults 
@@ -6,10 +11,12 @@
     userName = "sasha";
     userEmail = "nasdvoya@proton.me";
     extraConfig = {
-      core = { sshCommand = "ssh -i ~/.ssh/nasdvoya"; };
+      core = {
+        sshCommand = "ssh -i ~/.ssh/nasdvoya";
+      };
     };
     signing = {
-      key = "4C9C9371782546C3";  # Correct GPG key ID
+      key = "4C9C9371782546C3"; # Correct GPG key ID
       signByDefault = true;
     };
   };

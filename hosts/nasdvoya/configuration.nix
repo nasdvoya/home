@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   user = "nasdvoya";
 in
@@ -10,15 +15,23 @@ in
 
   wsl.enable = true;
   wsl.defaultUser = user;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  environment.systemPackages = with pkgs; [  ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  environment.systemPackages = with pkgs; [ ];
 
   users.users.${user} = {
     isNormalUser = true;
     description = "nasdvoya";
-    extraGroups = [ "networkmanager" "wheel" "docker" "lxd" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "lxd"
+    ];
+    packages = with pkgs; [ ];
   };
 
   networking.firewall.enable = true;

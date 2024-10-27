@@ -13,20 +13,29 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, nixos-wsl, unison-lang, ... }:
-    let 
+  outputs =
+    inputs@{
+      nixpkgs,
+      home-manager,
+      nixpkgs-unstable,
+      nixos-wsl,
+      unison-lang,
+      ...
+    }:
+    let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs = import nixpkgs { 
-        system = system; 
+      pkgs = import nixpkgs {
+        system = system;
         config.allowUnfree = true;
         overlays = [ unison-lang.overlay ];
       };
-      pkgs-unstable = import nixpkgs-unstable { 
-        system = system; 
+      pkgs-unstable = import nixpkgs-unstable {
+        system = system;
         config.allowUnfree = true;
       };
-    in {
+    in
+    {
       nixosConfigurations = {
         sasha = lib.nixosSystem {
           system = system;
@@ -47,7 +56,9 @@
 
         nasdvoya = lib.nixosSystem {
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./hosts/nasdvoya/configuration.nix
             nixos-wsl.nixosModules.wsl
@@ -64,5 +75,5 @@
           ];
         };
       };
-  };
+    };
 }

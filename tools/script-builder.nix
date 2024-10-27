@@ -6,7 +6,8 @@ let
   shellScripts = (lib.attrsets.filterAttrs isShellScript) (builtins.readDir scriptsDir); # attribute set
 
   # Create a script that can be run by its name without .sh extension
-  makeScript = scriptName: 
+  makeScript =
+    scriptName:
     let
       # Remove the .sh extension from the script name
       simpleName = lib.removeSuffix ".sh" scriptName;
@@ -14,14 +15,14 @@ let
       scriptContent = builtins.readFile scriptPath;
     in
     pkgs.writeShellScriptBin simpleName scriptContent;
-  
-  # Create a list of scripts
-  scriptPackages = lib.mapAttrsToList # pkgs function
-                   (name: script: makeScript name) # arg1(function) function defined above
-                   shellScripts; # arg2(attribute set) all .sh files in directory
 
-in {
+  # Create a list of scripts
+  scriptPackages =
+    lib.mapAttrsToList # pkgs function
+      (name: script: makeScript name) # arg1(function) function defined above
+      shellScripts; # arg2(attribute set) all .sh files in directory
+
+in
+{
   home.packages = scriptPackages;
 }
-
-
