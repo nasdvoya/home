@@ -88,7 +88,13 @@ return {
         cmd = { "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/nil" },
         capabilities = capabilities,
         on_attach = on_attach,
-        settings = {},
+        settings = {
+          ['nil'] = {
+            formatting = {
+              command = { "nixfmt" },
+            },
+          },
+        },
         filetypes = { 'nix' },
       }
       require('lspconfig')['gopls'].setup {

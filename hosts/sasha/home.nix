@@ -4,30 +4,60 @@ let
   pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
   stablePkgs = with pkgs; [
-    xclip zip unzip zoxide
-    ranger xdotool firefox
-    appimage-run obsidian pinentry-gnome3
+    xclip
+    zip
+    unzip
+    zoxide
+    ranger
+    xdotool
+    firefox
+    appimage-run
+    obsidian
+    pinentry-gnome3
     libreoffice
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "VictorMono" ]; })
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "FiraCode"
+        "VictorMono"
+      ];
+    })
   ];
   unstablePkgs = with pkgs-unstable; [
-    neovim fzf fd ripgrep
-    yarn nodejs_22 gcc google-chrome
-    mqttui just commit-mono
-    mqtt-explorer usbutils
-    tree cachix slack jetbrains.rust-rover
+    neovim
+    fzf
+    fd
+    ripgrep
+    yarn
+    nodejs_22
+    gcc
+    google-chrome
+    mqttui
+    just
+    commit-mono
+    mqtt-explorer
+    usbutils
+    tree
+    cachix
+    slack
+    jetbrains.rust-rover
 
     # Language Servers
-    lua-language-server lua omnisharp-roslyn
+    lua-language-server
+    lua
+    omnisharp-roslyn
     vscode-langservers-extracted
     tailwindcss-language-server
-    nil unison-ucm nixfmt-rfc-style
-    htmx-lsp rust-analyzer
+    nil
+    unison-ucm
+    nixfmt-rfc-style
+    htmx-lsp
+    rust-analyzer
   ];
 in
 
 {
-  imports = [ 
+  imports = [
     ../../modules/packages
     ../../modules/dotfiles
     ../../tools/script-builder.nix
@@ -39,29 +69,23 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-  home.packages = stablePkgs ++ unstablePkgs ++ jsonPkgs ;
+  home.packages = stablePkgs ++ unstablePkgs ++ jsonPkgs;
 
-  
   # Enable custom modules
   desktopEnvironment.enable = true;
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
   home.stateVersion = "24.05";
-  
+
   dconf.settings = {
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
       ];
     };
-
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>t";
       command = "wezterm-gui start --always-new-process";
       name = "Close window";
     };
-
   };
 }
