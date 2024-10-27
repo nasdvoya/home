@@ -109,6 +109,27 @@ return {
         settings = {},
         filetypes = { 'html' },
       }
+      require('lspconfig')['rust_analyzer'].setup {
+        cmd = { "rust-analyzer" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ['rust-analyzer'] = {
+            diagnostics = {
+              enable = true,
+            },
+            cargo = {
+              allFeatures = true,
+            },
+          }
+        },
+        filetypes = { 'rust' },
+        root_dir = function(fname)
+          return require('lspconfig.util').root_pattern("Cargo.toml", "rust-project.json")(fname) or
+              vim.fn.fnamemodify(fname, ':h')
+        end,
+        single_file_support = true,
+      }
       require('lspconfig')['unison'].setup {
         on_attach = function(client, bufnr)
           vim.o.signcolumn = 'yes'

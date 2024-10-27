@@ -22,7 +22,7 @@ let
     vscode-langservers-extracted
     tailwindcss-language-server
     nil unison-ucm nixfmt-rfc-style
-    htmx-lsp
+    htmx-lsp rust-analyzer
   ];
 in
 
