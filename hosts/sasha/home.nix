@@ -33,6 +33,7 @@ let
     slack
     jetbrains.rust-rover
     anydesk
+    rustdesk
     # Tooling
     live-server
     tree
