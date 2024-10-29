@@ -19,5 +19,19 @@
       key = "4C9C9371782546C3"; # Correct GPG key ID
       signByDefault = true;
     };
+
+    includes = [
+      {
+        contents = {
+          user = {
+            email = "sashawork@sashawork.org";
+          };
+          core = {
+            sshCommand = "ssh -i ~/.ssh/sasha_work";
+          };
+        };
+        condition = "gitdir:~/Work/";
+      }
+    ];
   };
 }
