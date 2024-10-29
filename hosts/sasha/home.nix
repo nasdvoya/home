@@ -62,6 +62,7 @@ in
 {
   imports = [
     ../../modules/packages
+    ../../modules/services
     ../../modules/dotfiles
     ../../tools/script-builder.nix
     ./git.nix
