@@ -32,6 +32,7 @@ let
     cachix
     slack
     jetbrains.rust-rover
+    anydesk
     # Tooling
     live-server
     tree
