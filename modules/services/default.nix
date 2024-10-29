@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./postegresql.nix ];
+  imports = [ ./postgresql.nix ];
 }
