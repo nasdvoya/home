@@ -20,15 +20,23 @@ let
     fzf
     fd
     ripgrep
-    nil
-    lua-language-server
-    lua
     yarn
     nodejs_22
     gcc
     google-chrome
     mqttui
     just
+    # Language Servers
+    lua-language-server
+    lua
+    omnisharp-roslyn
+    vscode-langservers-extracted
+    tailwindcss-language-server
+    nil
+    unison-ucm
+    nixfmt-rfc-style
+    htmx-lsp
+    rust-analyzer
   ];
 in
 
