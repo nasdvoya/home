@@ -15,6 +15,8 @@ let
     obsidian
     pinentry-gnome3
     libreoffice
+    # LSPs
+    rust-analyzer
     (pkgs.nerdfonts.override {
       fonts = [
         "JetBrainsMono"
@@ -55,7 +57,6 @@ let
     unison-ucm
     nixfmt-rfc-style
     htmx-lsp
-    rust-analyzer
   ];
 in
 
