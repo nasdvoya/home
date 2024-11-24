@@ -17,6 +17,7 @@ return {
       local telescope = require('telescope')
       telescope.setup {
         defaults = {
+          layout_strategy = 'vertical',
           mappings = {
             i = {
               ['<C-u>'] = false,
