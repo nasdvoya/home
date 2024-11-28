@@ -15,6 +15,7 @@ let
     obsidian
     pinentry-gnome3
     libreoffice
+    pax-utils
     # LSPs
     rust-analyzer
     (pkgs.nerdfonts.override {
