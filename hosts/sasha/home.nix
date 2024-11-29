@@ -16,6 +16,9 @@ let
     pinentry-gnome3
     libreoffice
     pax-utils
+    file
+    dotnet-sdk_8
+    patchelf
     # LSPs
     rust-analyzer
     (pkgs.nerdfonts.override {
