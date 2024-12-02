@@ -51,6 +51,7 @@ let
     yarn
     nodejs_22
     gcc
+    devenv
     # Language Servers
     lua-language-server
     lua

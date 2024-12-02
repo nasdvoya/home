@@ -91,7 +91,11 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ ];
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+  environment.systemPackages = with pkgs; [ distrobox ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
