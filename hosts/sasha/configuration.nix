@@ -5,6 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/services
+    ./cachix.nix
   ];
 
   programs.nix-ld.enable = true;
