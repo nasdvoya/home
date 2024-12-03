@@ -30,6 +30,8 @@ config.enable_tab_bar = false
 -- Font settings
 config.font_size = 11.5
 config.font = wezterm.font('JetBrains Mono', { weight = 'Regular' })
+-- Temp fix
+config.front_end = "WebGpu"
 
 -- Window padding
 config.window_padding = {
