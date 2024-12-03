@@ -19,6 +19,8 @@ let
     file
     dotnet-sdk_8
     patchelf
+    distrobox
+    distrobox-tui
     # LSPs
     rust-analyzer
     (pkgs.nerdfonts.override {
