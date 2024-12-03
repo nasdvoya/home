@@ -28,6 +28,11 @@
       pkgs = import nixpkgs {
         system = system;
         config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "dotnet-sdk-6.0.428"
+          "dotnet-runtime-6.0.36"
+          "dotnet-sdk-wrapped-6.0.428"
+        ];
         overlays = [ unison-lang.overlay ];
       };
       pkgs-unstable = import nixpkgs-unstable {
