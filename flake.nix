@@ -31,6 +31,7 @@
         config.permittedInsecurePackages = [
           "dotnet-sdk-6.0.428"
           "dotnet-runtime-6.0.36"
+          "dotnet-core-combined"
           "dotnet-sdk-wrapped-6.0.428"
         ];
         overlays = [ unison-lang.overlay ];
@@ -38,6 +39,12 @@
       pkgs-unstable = import nixpkgs-unstable {
         system = system;
         config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "dotnet-sdk-6.0.428"
+          "dotnet-runtime-6.0.36"
+          "dotnet-core-combined"
+          "dotnet-sdk-wrapped-6.0.428"
+        ];
       };
     in
     {
