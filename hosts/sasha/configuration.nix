@@ -5,7 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/services
-    ./cachix.nix
+    # ./cachix.nix
   ];
 
   programs.nix-ld.enable = true;
@@ -15,7 +15,7 @@
     options = "--delete-older-than 7d";
   };
   nix = {
-    package = pkgs.nixFlakes;
+    # package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
