@@ -17,12 +17,13 @@ let
     libreoffice
     pax-utils
     file
-    dotnet-sdk_8
-    patchelf
+    # tooling
+    rust-analyzer
     distrobox
     distrobox-tui
-    # LSPs
-    rust-analyzer
+    dotnet-sdk_8
+    patchelf
+    # fonts
     (pkgs.nerdfonts.override {
       fonts = [
         "JetBrainsMono"
@@ -42,7 +43,7 @@ let
     jetbrains.rust-rover
     anydesk
     rustdesk
-    # Tooling
+    # tooling
     live-server
     tree
     just
@@ -54,7 +55,7 @@ let
     nodejs_22
     gcc
     devenv
-    # Language Servers
+    # language Servers
     lua-language-server
     lua
     omnisharp-roslyn
