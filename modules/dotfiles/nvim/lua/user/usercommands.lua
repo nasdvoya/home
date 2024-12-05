@@ -48,6 +48,12 @@ function M.setup()
     local command = vim.split(vim.fn.input "Command: ", " ")
     attach_to_buffer(tonumber(bufnr), pattern, command)
   end, {})
+
+  -- Timestamp
+  vim.api.nvim_create_user_command("Time", function()
+    local date = os.date("%d-%m-%Y %H:%M:%S")
+    vim.api.nvim_put({ date }, "c", true, true)
+  end, {})
 end
 
 return M

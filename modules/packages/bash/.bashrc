@@ -90,8 +90,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-# Nix
 # Dotnet
 # bash parameter completion for the dotnet CLI
 function _dotnet_bash_complete()
@@ -109,6 +107,9 @@ complete -f -F _dotnet_bash_complete dotnet
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export EDITOR=nvim
+# Yarn
+export PATH="$HOME/.yarn/bin:$PATH"
+
 # Terminal tools
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
