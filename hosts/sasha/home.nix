@@ -44,6 +44,7 @@ let
     anydesk
     rustdesk
     # tooling
+    nix-serve
     live-server
     tree
     just
