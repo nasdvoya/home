@@ -3,7 +3,11 @@
 let
   pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
+  corefluxCentral = import /home/sasha/Github/coreflux-community/coreflux-broker/src/default.nix {
+    pkgs = pkgs;
+  };
   stablePkgs = with pkgs; [
+    corefluxCentral
     xclip
     zip
     unzip
@@ -17,6 +21,8 @@ let
     libreoffice
     pax-utils
     file
+    qemu
+    quickemu
     # tooling
     rust-analyzer
     distrobox
@@ -44,6 +50,7 @@ let
     anydesk
     rustdesk
     # tooling
+    htop-vim
     nix-serve
     live-server
     tree
