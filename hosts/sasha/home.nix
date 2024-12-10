@@ -3,11 +3,11 @@
 let
   pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
-  corefluxCentral = import /home/sasha/Github/coreflux-community/coreflux-broker/src/default.nix {
-    pkgs = pkgs;
-  };
+  # corefluxCentral = import /home/sasha/Github/coreflux-community/coreflux-broker/src/default.nix {
+  #   pkgs = pkgs;
+  # };
   stablePkgs = with pkgs; [
-    corefluxCentral
+    # corefluxCentral
     xclip
     zip
     unzip
