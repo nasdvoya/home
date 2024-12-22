@@ -103,6 +103,12 @@ return {
         settings = {},
         filetypes = { 'go' },
       }
+      require('lspconfig')['bashls'].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {},
+        filetypes = { 'sh', 'bash' },
+      }
       require('lspconfig')['html'].setup {
         capabilities = capabilities,
         on_attach = on_attach,

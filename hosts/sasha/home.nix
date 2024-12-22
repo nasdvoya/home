@@ -64,7 +64,9 @@ let
     gcc
     devenv
     # language Servers
+    shfmt
     lua-language-server
+    nodePackages.bash-language-server
     lua
     omnisharp-roslyn
     vscode-langservers-extracted
