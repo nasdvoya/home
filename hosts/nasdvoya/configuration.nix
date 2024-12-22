@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -8,10 +6,9 @@ let
   user = "nasdvoya";
 in
 {
-  imports = [
-    # include NixOS-WSL modules
-    #<nixos-wsl/modules>
-  ];
+  imports =
+    [
+    ];
 
   wsl.enable = true;
   wsl.defaultUser = user;

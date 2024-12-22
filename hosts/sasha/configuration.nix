@@ -1,11 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/services
-    # ./cachix.nix
   ];
 
   programs.nix-ld.enable = true;
@@ -126,7 +125,5 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   networking.firewall.enable = true;
-
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

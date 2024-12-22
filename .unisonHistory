@@ -1,5 +1,0 @@
-quit
-clear
-ls lib.base
-ui
-project.create quickstart

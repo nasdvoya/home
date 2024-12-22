@@ -1,12 +1,9 @@
 {
-  config,
-  pkgs,
-  lib,
   ...
 }:
 {
   programs.git = {
-    # Defaults 
+    # Defaults
     enable = true;
     userName = "nasdvoya";
     userEmail = "nasdvoya@proton.me";
