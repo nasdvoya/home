@@ -7,6 +7,7 @@ let
     xclip
     zip
     unzip
+    unzip
     zoxide
     ranger
     xdotool
