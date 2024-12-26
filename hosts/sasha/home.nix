@@ -19,6 +19,7 @@ let
     file
     qemu
     quickemu
+    tmux
     # tooling
     rust-analyzer
     distrobox
@@ -99,8 +100,8 @@ in
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>t";
-      command = "wezterm-gui start --always-new-process";
-      name = "Close window";
+      command = "alacritty";
+      name = "Open terminal";
     };
   };
 }
