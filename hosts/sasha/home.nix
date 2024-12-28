@@ -21,6 +21,9 @@ let
     quickemu
     tmux
     # tooling
+    cmake
+    gnumake
+    gcc
     rust-analyzer
     distrobox
     dotnet-sdk_8

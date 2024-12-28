@@ -44,7 +44,7 @@
           x = 0;
           y = 0;
         };
-        opacity = 0.9;
+        opacity = 1.0;
       };
 
 
