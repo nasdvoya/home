@@ -14,6 +14,7 @@ let
     appimage-run
     obsidian
     wslu
+    tmux
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
   unstablePkgs = with pkgs-unstable; [
