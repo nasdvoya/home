@@ -39,6 +39,7 @@ let
   unstablePkgs = with pkgs-unstable; [
     neovim
     google-chrome
+    ghostty
     mqttui
     commit-mono
     mqtt-explorer
