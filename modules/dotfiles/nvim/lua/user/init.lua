@@ -1,6 +1,0 @@
-require("user.options")
-require("user.lazy")
-require("user.usercommands").setup()
-require("user.keymaps")
-require("user.autocommands")
-require("user.keymaps-helper")

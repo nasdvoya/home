@@ -1,17 +1,15 @@
 return {
   {
     "stevearc/oil.nvim",
-    opts = {},
-    -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local oil = require("oil")
-      local keymaps = require("user.keymaps")
-
-      oil.setup({
+      require("oil").setup({
         view_options = {
           show_hidden = true,
         },
+        vim.keymap.set("n", "<leader>oi", function()
+          require("oil").open()
+        end, { desc = "Open oil explorer" }),
       })
     end,
   }
