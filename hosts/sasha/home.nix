@@ -25,7 +25,8 @@ let
     gnumake
     rust-analyzer
     distrobox
-    dotnet-sdk_8
+    # dotnet-sdk_8
+    (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0  ])
     patchelf
     # fonts
     (pkgs.nerdfonts.override {
@@ -46,6 +47,7 @@ let
     cachix
     slack
     jetbrains.rust-rover
+    jetbrains.rider
     # tooling
     htop-vim
     nix-serve

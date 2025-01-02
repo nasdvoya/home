@@ -30,6 +30,7 @@
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
           "dotnet-sdk-6.0.428"
+          "dotnet-sdk-7.0.410"
           "dotnet-runtime-6.0.36"
           "dotnet-core-combined"
           "dotnet-sdk-wrapped-6.0.428"
