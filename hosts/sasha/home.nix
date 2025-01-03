@@ -19,7 +19,9 @@ let
     file
     qemu
     quickemu
+    neovim
     tmux
+    s3cmd
     # tooling
     cmake
     gnumake
@@ -38,7 +40,6 @@ let
     })
   ];
   unstablePkgs = with pkgs-unstable; [
-    neovim
     google-chrome
     ghostty
     mqttui
