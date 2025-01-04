@@ -16,6 +16,7 @@ let
     pinentry-gnome3
     libreoffice
     pax-utils
+    evince
     file
     qemu
     quickemu
