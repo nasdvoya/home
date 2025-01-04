@@ -8,9 +8,12 @@
   config = {
     home.file = lib.mkMerge [
       {
-        # Always include nvim configuration
         ".config/nvim/" = {
           source = ./nvim;
+          recursive = true;
+        };
+        ".config/zellij/" = {
+          source = ./zellij;
           recursive = true;
         };
       }
