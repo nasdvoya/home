@@ -22,7 +22,6 @@ let
     quickemu
     neovim
     tmux
-    s3cmd
     # tooling
     cmake
     gnumake
