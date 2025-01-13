@@ -22,13 +22,21 @@ let
     quickemu
     neovim
     tmux
+    pgcli
     # tooling
     cmake
     gnumake
     rust-analyzer
     distrobox
     # dotnet-sdk_8
-    (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0  ])
+    (
+      with dotnetCorePackages;
+      combinePackages [
+        sdk_6_0
+        sdk_7_0
+        sdk_8_0
+      ]
+    )
     patchelf
     # fonts
     (pkgs.nerdfonts.override {
