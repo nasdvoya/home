@@ -135,6 +135,11 @@ return {
               end,
             })
           end
+
+          -- Format
+          vim.keymap.set("n", "<leader>cf", function()
+            vim.lsp.buf.format({ bufnr = args.buf })
+          end, { buffer = args.buf, desc = "Format buffer" })
         end,
       })
     end,
