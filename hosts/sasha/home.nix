@@ -23,6 +23,7 @@ let
     neovim
     tmux
     pgcli
+    cachix
     # tooling
     cmake
     gnumake
@@ -53,7 +54,6 @@ let
     mqttui
     commit-mono
     mqtt-explorer
-    cachix
     slack
     jetbrains.rust-rover
     jetbrains.rider
