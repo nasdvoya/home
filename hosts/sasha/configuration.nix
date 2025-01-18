@@ -125,5 +125,14 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   networking.firewall.enable = true;
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?appstream
+  networking = {
+    useDHCP = false;
+    enableIPv6 = false;
+    nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
+  };
+
 }
