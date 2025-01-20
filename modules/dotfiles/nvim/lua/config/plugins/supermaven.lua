@@ -5,6 +5,7 @@ return {
       keymaps = {
         accept_suggestion = "<leader>y",
       },
+      ignore_filetypes = { rust = true, nix = true },
     })
   end,
 }

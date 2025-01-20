@@ -17,10 +17,10 @@ return {
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "<c-space>",     -- Start incremental selection
-            node_incremental = "<c-space>",   -- Increment to the next node
-            scope_incremental = "<c-s>",      -- Increment to the next scope
-            node_decremental = "<c-s-space>", -- Decrement to the previous node
+            init_selection = "<c-l>",     -- Start incremental selection
+            node_incremental = "<c-l>",   -- Increment to the next node
+            scope_incremental = "<c-s>",  -- Increment to the next scope
+            node_decremental = "<c-s-l>", -- Decrement to the previous node
           },
         },
         highlight = {
