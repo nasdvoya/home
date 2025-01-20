@@ -26,6 +26,7 @@ let
     cachix
     icu
     steam-run
+    nixos-generators
     # tooling
     cmake
     gnumake
