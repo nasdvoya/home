@@ -24,6 +24,7 @@ let
     tmux
     pgcli
     cachix
+    icu
     # tooling
     cmake
     gnumake
