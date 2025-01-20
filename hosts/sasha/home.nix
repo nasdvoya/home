@@ -25,6 +25,7 @@ let
     pgcli
     cachix
     icu
+    steam-run
     # tooling
     cmake
     gnumake

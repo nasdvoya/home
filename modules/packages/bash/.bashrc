@@ -26,4 +26,14 @@ export EDITOR=nvim
 complete -f -F _dotnet_bash_complete dotnet
 
 # Terminal tools
-eval "$(zoxide init bash)"
+if [ -z "$DISTROBOX_ENTER_PATH" ]; then
+    # Normal environment settings
+    eval "$(atuin init bash)"
+    eval "$(starship init bash)"
+    eval "$(zoxide init bash)"
+else
+    echo "Running inside Distrobox, skipping atuin and starship setup."
+
+    # Set a compatible terminal type to avoid errors
+    export TERM=xterm-256color
+fi
