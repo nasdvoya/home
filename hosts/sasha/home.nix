@@ -27,6 +27,7 @@ let
     icu
     steam-run
     nixos-generators
+    nixos-anywhere
     # tooling
     cmake
     gnumake
