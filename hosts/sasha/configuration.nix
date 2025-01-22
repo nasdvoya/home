@@ -25,8 +25,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # Enable networking
-  networking.networkmanager.enable = true;
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
   # Select internationalisation properties.
@@ -124,20 +122,28 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # Enable networking
+  networking.networkmanager.enable = true;
   networking.firewall.enable = true;
   system.stateVersion = "24.05"; # Did you read the comment?appstream
   networking = {
-    useDHCP = false;
-    enableIPv6 = false;
+    # useDHCP = true;
+    enableIPv6 = true;
     nameservers = [
       "8.8.8.8"
       "8.8.4.4"
     ];
-    bridges = {
-      "br0" = {
-        interfaces = [ "enp0s31f6" ];
-      };
-    };
+    # bridges = {
+    #   "br0" = {
+    #     interfaces = [ "enp0s31f6" ];
+    #   };
+    # };
   };
-
+  networking.interfaces.enp0s31f6.useDHCP = true;
+  # networking.interfaces.enp0s31f6.ipv4.addresses = [
+  #   {
+  #     address = "169.254.152.77";
+  #     prefixLength = 24;
+  #   }
+  # ];
 }

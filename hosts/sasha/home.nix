@@ -28,6 +28,7 @@ let
     steam-run
     nixos-generators
     nixos-anywhere
+    usbimager
     # tooling
     cmake
     gnumake
