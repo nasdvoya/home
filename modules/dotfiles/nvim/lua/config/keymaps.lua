@@ -3,6 +3,7 @@ local M = {}
 M.normal = function()
   vim.keymap.set("n", "<space>", "<nop>", { desc = "Disable space in normal" })
   vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save current buffer" })
+  vim.keymap.set("n", "<leader>wa", "<cmd>wa<cr>", { desc = "Save all buffers" })
   vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit current buffer" })
   vim.keymap.set("n", "L", "$", { desc = "Mode to end of line" })
   vim.keymap.set("n", "H", "^", { desc = "Move to begining of line" })
@@ -12,14 +13,9 @@ M.normal = function()
     local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
     vim.api.nvim_feedkeys(keys, "n", false)
   end, { desc = "Find and replace" })
-end
-
-M.common_lsp = function(bufnum)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition", buffer = bufnum })
-  vim.keymap.set("n", "gi", vim.lsp.buf.definition, { desc = "Go to implementation", buffer = bufnum })
-  vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, { desc = "Signature help", buffer = bufnum })
-  vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Signature help", buffer = bufnum })
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Signature help", buffer = bufnum })
+  vim.keymap.set("n", "<leader>ch", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  end, { desc = "Toggle Inlay Hints" })
 end
 
 M.diagnostic = function()

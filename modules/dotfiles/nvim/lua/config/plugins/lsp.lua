@@ -10,28 +10,13 @@ return {
     },
     config = function()
       local capabilities = require("blink.cmp").get_lsp_capabilities()
-      local keymaps = require("config.keymaps")
 
       local on_attach = function(client, bufnum)
         print("LSP attached to buffer: " .. bufnum)
-        keymaps.common_lsp(bufnum)
         vim.api.nvim_buf_create_user_command(bufnum, "Format", function(_)
           vim.lsp.buf.format()
         end, { desc = "Format current byffer" })
       end
-
-      -- Dotnet
-      require("lspconfig")["omnisharp"].setup {
-        cmd = { "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/OmniSharp" },
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = {
-          enable_roslyn_analysers = true,
-          enable_import_completion = true,
-          organize_imports_on_format = true,
-        },
-        filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props' },
-      }
 
       -- Lua
       require("lspconfig").lua_ls.setup {
@@ -118,30 +103,6 @@ return {
         end,
         single_file_support = true,
       }
-
-      --
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if not client then return end
-
-          -- Format the current buffer on save
-          if vim.bo.filetype == "lua" then
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = args.buf,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-              end,
-            })
-          end
-
-          -- Format
-          vim.keymap.set("n", "<leader>cf", function()
-            vim.lsp.buf.format({ bufnr = args.buf })
-          end, { buffer = args.buf, desc = "Format buffer" })
-        end,
-      })
     end,
   }
 }

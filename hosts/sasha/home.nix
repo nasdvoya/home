@@ -29,6 +29,7 @@ let
     nixos-generators
     nixos-anywhere
     usbimager
+    jq
     # tooling
     cmake
     gnumake
@@ -41,8 +42,10 @@ let
         sdk_6_0
         sdk_7_0
         sdk_8_0
+        sdk_9_0
       ]
     )
+    netcoredbg
     patchelf
     # fonts
     (pkgs.nerdfonts.override {
@@ -81,7 +84,10 @@ let
     lua-language-server
     nodePackages.bash-language-server
     lua
-    omnisharp-roslyn
+    # omnisharp-roslyn
+    msbuild
+    roslyn
+    roslyn-ls
     vscode-langservers-extracted
     tailwindcss-language-server
     nil
