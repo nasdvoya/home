@@ -1,11 +1,39 @@
 { pkgs, ... }:
-
+let
+  roq = import /home/sasha/Github/nasdvoya/dotnet-binary-derivation/qor/default.nix {
+    inherit (pkgs)
+      stdenv
+      lib
+      autoPatchelfHook
+      zlib
+      icu
+      ;
+  };
+in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/services
   ];
+
+  systemd.services.qor = {
+    enable = false;
+    description = ".NET Service";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = "${roq}/qor";
+      Restart = "always";
+      User = "sasha";
+      Group = "users";
+      WorkingDirectory = "${roq}";
+      Environment = "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1";
+      StandardOutput = "journal";
+      StandardError = "journal";
+    };
+  };
 
   programs.nix-ld.enable = true;
   nix.gc = {
