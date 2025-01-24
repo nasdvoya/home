@@ -22,6 +22,11 @@ return {
         "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
       },
       config = {
+        on_attach = function(client, bufnr)
+          require('lsp-overloads').setup(client, {
+            display_automatically = true,
+          })
+        end,
         settings = {
           ["csharp|background_analysis"] = {
             background_analysis_dotnet_analyzer_diagnostics_scope = "openFiles",

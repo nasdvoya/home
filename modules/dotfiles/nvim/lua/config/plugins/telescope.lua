@@ -29,6 +29,9 @@ return {
       vim.keymap.set("n", "<leader>/", function()
         require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_ivy({ border = false }))
       end, { desc = "Fuzzy find current file" }),
+      vim.keymap.set("n", "<leader>sr", function()
+        require("telescope.builtin").lsp_references(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } }))
+      end, { desc = "Find references" }),
       vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" }),
       defaults = {
       },
