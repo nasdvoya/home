@@ -1,6 +1,8 @@
-{ pkgs, pkgs-unstable, ... }:
-
-let
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: let
   pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
   stablePkgs = with pkgs; [
@@ -29,25 +31,27 @@ let
     nixos-generators
     nixos-anywhere
     usbimager
+    # Tooling / Languages
     jq
-    # tooling
+    yarn
+    nodejs_22
+    lua
     cmake
     gnumake
     rust-analyzer
     distrobox
-    # dotnet-sdk_8
-    (
-      with dotnetCorePackages;
-      combinePackages [
-        sdk_6_0
-        sdk_7_0
-        sdk_8_0
-        sdk_9_0
-      ]
-    )
     netcoredbg
     patchelf
-    # fonts
+    (
+      with dotnetCorePackages;
+        combinePackages [
+          sdk_6_0
+          sdk_7_0
+          sdk_8_0
+          sdk_9_0
+        ]
+    )
+    # Fonts
     (pkgs.nerdfonts.override {
       fonts = [
         "JetBrainsMono"
@@ -65,7 +69,7 @@ let
     slack
     jetbrains.rust-rover
     jetbrains.rider
-    # tooling
+    # Tooling
     htop-vim
     nix-serve
     live-server
@@ -75,18 +79,13 @@ let
     fzf
     fd
     ripgrep
-    yarn
-    nodejs_22
     gcc
     devenv
-    # language Servers
-    shfmt
-    lua-language-server
-    nodePackages.bash-language-server
-    lua
-    # omnisharp-roslyn
     msbuild
     roslyn
+    # Language Servers
+    lua-language-server
+    nodePackages.bash-language-server
     roslyn-ls
     vscode-langservers-extracted
     tailwindcss-language-server
@@ -94,10 +93,15 @@ let
     unison-ucm
     nixfmt-rfc-style
     htmx-lsp
+    # Code formatters
+    alejandra
+    stylua
+    nodePackages.prettier
+    prettierd
+    shfmt
+    csharpier
   ];
-in
-
-{
+in {
   imports = [
     ../../modules/packages
     ../../modules/dotfiles

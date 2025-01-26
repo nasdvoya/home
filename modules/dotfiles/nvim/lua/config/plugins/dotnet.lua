@@ -1,7 +1,7 @@
 return {
   -- Easy Dotnet plugin
   {
-    "GustavEikaas/easy-dotnet.nvim",
+    dir = "/home/sasha/Github/nasdvoya/easy-dotnet.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     config = function()
       require("easy-dotnet").setup({})

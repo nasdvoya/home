@@ -5,19 +5,15 @@ require("config.keymaps").visual()
 require("config.keymaps").terminal()
 require("config.keymaps").diagnostic()
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highligt when yanking text',
-  group = vim.api.nvim_create_augroup('kickstart-hightlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highligt when yanking text",
+  group = vim.api.nvim_create_augroup("kickstart-hightlight-yank", { clear = true }),
+  callback = function() vim.highlight.on_yank() end,
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*.cs",
-  callback = function()
-    vim.lsp.codelens.refresh({ bufnr = 0 })
-  end,
+  callback = function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -33,20 +29,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, { desc = "Signature help", buffer = buf })
     vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol", buffer = buf })
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions", buffer = buf })
-
-    -- Code format keymap
-    vim.keymap.set("n", "<leader>cf", function()
-      vim.lsp.buf.format({ bufnr = buf })
-    end, { buffer = buf, desc = "Format buffer" })
-
-    -- Format the current buffer on save (only for Lua files)
-    if vim.bo[buf].filetype == "lua" then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = buf, id = client.id })
-        end,
-      })
-    end
   end,
 })
