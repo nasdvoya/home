@@ -168,10 +168,10 @@
     # };
   };
   networking.interfaces.enp0s31f6.useDHCP = true;
-  # networking.interfaces.enp0s31f6.ipv4.addresses = [
-  #   {
-  #     address = "169.254.152.77";
-  #     prefixLength = 24;
-  #   }
-  # ];
+  networking.interfaces.enp0s31f6.ipv4.addresses = [
+    {
+      address = "192.168.1.20";
+      prefixLength = 24;
+    }
+  ];
 }
