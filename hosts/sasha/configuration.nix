@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{pkgs, ...}:
 # let
 #   roq = import /home/sasha/Github/nasdvoya/dotnet-binary-derivation/qor/default.nix {
 #     inherit (pkgs)
@@ -114,7 +114,7 @@
       "podman"
       "docker"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -123,7 +123,7 @@
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
   };
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -167,10 +167,10 @@
     #   };
     # };
   };
-  networking.interfaces.enp0s31f6.useDHCP = true;
+  # networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.enp0s31f6.ipv4.addresses = [
     {
-      address = "192.168.1.20";
+      address = "169.254.152.166";
       prefixLength = 24;
     }
   ];
