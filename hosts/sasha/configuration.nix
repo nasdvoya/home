@@ -167,11 +167,11 @@
     #   };
     # };
   };
-  # networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.enp0s31f6.ipv4.addresses = [
-    {
-      address = "169.254.152.166";
-      prefixLength = 24;
-    }
-  ];
+  networking.interfaces.enp0s31f6.useDHCP = true;
+  # networking.interfaces.enp0s31f6.ipv4.addresses = [
+  #   {
+  #     address = "169.254.152.166";
+  #     prefixLength = 24;
+  #   }
+  # ];
 }
