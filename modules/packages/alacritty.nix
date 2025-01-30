@@ -2,7 +2,6 @@
   programs.alacritty = {
     enable = true;
     settings = {
-
       font = {
         normal = {
           family = "JetbrainsMono Nerd Font";
@@ -18,35 +17,14 @@
         };
       };
 
-      keyboard = {
-        bindings = [
-          {
-            key = "+";
-            mods = "Super | Alt";
-            action = "IncreaseFontSize";
-          }
-          {
-            key = "´";
-            mods = "Super | Alt";
-            action = "DecreaseFontSize";
-          }
-          {
-            key = "º";
-            mods = "Super | Alt";
-            action = "ResetFontSize";
-          }
-        ];
-      };
-
       window = {
-        decorations = "None";
+        decorations = "Full";
         padding = {
           x = 0;
           y = 0;
         };
         opacity = 1.0;
       };
-
 
       colors = {
         selection = {
@@ -85,7 +63,6 @@
           white = "0xECE1D7";
         };
       };
-
     };
   };
 }
