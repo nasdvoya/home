@@ -1,39 +1,9 @@
-{pkgs, ...}:
-# let
-#   roq = import /home/sasha/Github/nasdvoya/dotnet-binary-derivation/qor/default.nix {
-#     inherit (pkgs)
-#       stdenv
-#       lib
-#       autoPatchelfHook
-#       zlib
-#       icu
-#       ;
-#   };
-# in
-{
+{pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/services
   ];
-
-  # systemd.services.qor = {
-  #   enable = false;
-  #   description = ".NET Service";
-  #   after = [ "network.target" ];
-  #   wantedBy = [ "multi-user.target" ];
-  #
-  #   serviceConfig = {
-  #     ExecStart = "${roq}/qor";
-  #     Restart = "always";
-  #     User = "sasha";
-  #     Group = "users";
-  #     WorkingDirectory = "${roq}";
-  #     Environment = "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1";
-  #     StandardOutput = "journal";
-  #     StandardError = "journal";
-  #   };
-  # };
 
   programs.nix-ld.enable = true;
   nix.gc = {
@@ -42,7 +12,6 @@
     options = "--delete-older-than 7d";
   };
   nix = {
-    # package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -52,10 +21,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # Set your time zone.
+  networking.hostName = "nixos";
   time.timeZone = "Europe/Lisbon";
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -73,24 +40,16 @@
   # Services
   services.twingate.enable = true;
   services.dnsmasq.enable = true;
-  # Enable the X11 windowing system.
+
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  # Activate the X11
-  # services.xserver.displayManager.gdm.wayland = false;
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "pt";
-    xkb.variant = "nodeadkeys";
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.cinnamon.enable = true;
+  services.xserver.xkb = {
+    layout = "pt";
+    variant = "";
   };
 
-  # Configure console keymap
   console.keyMap = "pt-latin1";
-  # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
@@ -103,7 +62,6 @@
     pulse.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sasha = {
     isNormalUser = true;
     description = "Sasha";
@@ -154,23 +112,23 @@
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
   system.stateVersion = "24.05"; # Did you read the comment?appstream
-  networking = {
-    useDHCP = false;
-    enableIPv6 = false;
-    nameservers = [
-      "8.8.8.8"
-      "8.8.4.4"
-    ];
+  # networking = {
+  #   useDHCP = true;
+  #   enableIPv6 = true;
+  #   nameservers = [
+  #     "8.8.8.8"
+  #     "8.8.4.4"
+  #   ];
     # bridges = {
     #   "br0" = {
     #     interfaces = [ "enp0s31f6" ];
     #   };
     # };
-  };
-  networking.interfaces.enp0s31f6.useDHCP = true;
+  # };
+  # networking.interfaces.enp0s31f6.useDHCP = true;
   # networking.interfaces.enp0s31f6.ipv4.addresses = [
   #   {
-  #     address = "169.254.152.166";
+  #     address = "192.168.1.55";
   #     prefixLength = 24;
   #   }
   # ];

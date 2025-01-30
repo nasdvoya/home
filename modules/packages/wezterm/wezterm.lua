@@ -11,7 +11,7 @@ config.default_cursor_style = 'BlinkingBar'
 config.automatically_reload_config = true
 config.window_close_confirmation = 'NeverPrompt'
 config.adjust_window_size_when_changing_font_size = false
-config.window_decorations = 'RESIZE'
+config.window_decorations = 'TITLE | RESIZE'
 config.check_for_updates = false
 
 -- Tab bar settings
