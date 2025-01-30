@@ -1,6 +1,8 @@
-{ pkgs, pkgs-unstable, ... }:
-
-let
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: let
   pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
   stablePkgs = with pkgs; [
@@ -15,7 +17,7 @@ let
     obsidian
     wslu
     tmux
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
   unstablePkgs = with pkgs-unstable; [
     neovim
@@ -40,9 +42,7 @@ let
     htmx-lsp
     rust-analyzer
   ];
-in
-
-{
+in {
   imports = [
     ../../modules/packages
     ../../modules/dotfiles

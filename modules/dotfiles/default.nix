@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   options = {
     desktopEnvironment.enable = lib.mkEnableOption "Enable WM configuration.";
   };

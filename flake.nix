@@ -13,80 +13,77 @@
     };
   };
 
-  outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      nixpkgs-unstable,
-      nixos-wsl,
-      unison-lang,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    nixpkgs-unstable,
+    nixos-wsl,
+    unison-lang,
+    ...
+  }: let
+    system = "x86_64-linux";
+    lib = nixpkgs.lib;
+    pkgs = import nixpkgs {
+      system = system;
+      config.allowUnfree = true;
+      config.permittedInsecurePackages = [
+        "dotnet-sdk-6.0.428"
+        "dotnet-sdk-7.0.410"
+        "dotnet-runtime-6.0.36"
+        "dotnet-core-combined"
+        "dotnet-sdk-wrapped-6.0.428"
+      ];
+      overlays = [unison-lang.overlay];
+    };
+    pkgs-unstable = import nixpkgs-unstable {
+      system = system;
+      config.allowUnfree = true;
+      config.permittedInsecurePackages = [
+        "dotnet-sdk-6.0.428"
+        "dotnet-runtime-6.0.36"
+        "dotnet-core-combined"
+        "dotnet-sdk-wrapped-6.0.428"
+      ];
+    };
+  in {
+    nixosConfigurations = {
+      sasha = lib.nixosSystem {
         system = system;
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-          "dotnet-sdk-6.0.428"
-          "dotnet-sdk-7.0.410"
-          "dotnet-runtime-6.0.36"
-          "dotnet-core-combined"
-          "dotnet-sdk-wrapped-6.0.428"
-        ];
-        overlays = [ unison-lang.overlay ];
-      };
-      pkgs-unstable = import nixpkgs-unstable {
-        system = system;
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-          "dotnet-sdk-6.0.428"
-          "dotnet-runtime-6.0.36"
-          "dotnet-core-combined"
-          "dotnet-sdk-wrapped-6.0.428"
+        modules = [
+          ./hosts/sasha/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.sasha = import ./hosts/sasha/home.nix;
+            home-manager.extraSpecialArgs = {
+              inherit inputs pkgs pkgs-unstable;
+              username = "sasha";
+            };
+          }
         ];
       };
-    in
-    {
-      nixosConfigurations = {
-        sasha = lib.nixosSystem {
-          system = system;
-          modules = [
-            ./hosts/sasha/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.sasha = import ./hosts/sasha/home.nix;
-              home-manager.extraSpecialArgs = {
-                inherit inputs pkgs pkgs-unstable;
-                username = "sasha";
-              };
-            }
-          ];
-        };
 
-        nasdvoya = lib.nixosSystem {
-          system = system;
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/nasdvoya/configuration.nix
-            nixos-wsl.nixosModules.wsl
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.nasdvoya = import ./hosts/nasdvoya/home.nix;
-              home-manager.extraSpecialArgs = {
-                inherit inputs pkgs pkgs-unstable;
-                username = "nasdvoya";
-              };
-            }
-          ];
+      nasdvoya = lib.nixosSystem {
+        system = system;
+        specialArgs = {
+          inherit inputs;
         };
+        modules = [
+          ./hosts/nasdvoya/configuration.nix
+          nixos-wsl.nixosModules.wsl
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.nasdvoya = import ./hosts/nasdvoya/home.nix;
+            home-manager.extraSpecialArgs = {
+              inherit inputs pkgs pkgs-unstable;
+              username = "nasdvoya";
+            };
+          }
+        ];
       };
     };
+  };
 }

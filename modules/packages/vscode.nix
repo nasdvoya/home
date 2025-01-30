@@ -1,8 +1,5 @@
-{ pkgs, ... }:
-
-let
-  dotnet-full =
-    with pkgs.dotnetCorePackages;
+{pkgs, ...}: let
+  dotnet-full = with pkgs.dotnetCorePackages;
     combinePackages [
       sdk_8_0
       sdk_9_0
@@ -11,26 +8,24 @@ let
 
   deps = (
     ps:
-    with ps;
-    [
-      zlib
-      openssl.dev
-      pkg-config
-      stdenv.cc
-      cmake
-      mono
-      msbuild
-    ]
-    ++ [ dotnet-full ]
+      with ps;
+        [
+          zlib
+          openssl.dev
+          pkg-config
+          stdenv.cc
+          cmake
+          mono
+          msbuild
+        ]
+        ++ [dotnet-full]
   );
-in
-
-{
+in {
   programs.vscode = {
     enable = true;
     package =
       (pkgs.vscode.overrideAttrs (prevAttrs: {
-        nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ pkgs.makeWrapper ];
+        nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [pkgs.makeWrapper];
         postFixup =
           prevAttrs.postFixup
           + ''
@@ -38,8 +33,9 @@ in
               --set DOTNET_ROOT "${dotnet-full}" \
               --prefix PATH : "~/.dotnet/tools"
           '';
-      })).fhsWithPackages
-        (ps: deps ps);
-    extensions = [ ];
+      }))
+      .fhsWithPackages
+      (ps: deps ps);
+    extensions = [];
   };
 }

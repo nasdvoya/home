@@ -1,9 +1,6 @@
-{
-  ...
-}:
-{
+{...}: {
   programs.git = {
-    # Defaults 
+    # Defaults
     enable = true;
     userName = "sasha";
     userEmail = "nasdvoya@proton.me";

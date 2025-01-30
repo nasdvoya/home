@@ -1,14 +1,8 @@
-{
-  pkgs,
-  ...
-}:
-let
+{pkgs, ...}: let
   user = "nasdvoya";
-in
-{
-  imports =
-    [
-    ];
+in {
+  imports = [
+  ];
 
   wsl.enable = true;
   wsl.defaultUser = user;
@@ -17,7 +11,7 @@ in
     "flakes"
   ];
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [];
 
   users.users.${user} = {
     isNormalUser = true;
@@ -28,7 +22,7 @@ in
       "docker"
       "lxd"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
   };
 
   networking.firewall.enable = true;

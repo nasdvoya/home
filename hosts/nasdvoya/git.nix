@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{
+{...}: {
   programs.git = {
     # Defaults
     enable = true;

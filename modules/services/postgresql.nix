@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services.postgresql = {
     enable = true;
-    ensureDatabases = [ "testdb" ];
+    ensureDatabases = ["testdb"];
     enableTCPIP = true;
     authentication = pkgs.lib.mkOverride 10 ''
       # Allow local connections via Unix socket

@@ -119,11 +119,11 @@
   #     "8.8.8.8"
   #     "8.8.4.4"
   #   ];
-    # bridges = {
-    #   "br0" = {
-    #     interfaces = [ "enp0s31f6" ];
-    #   };
-    # };
+  # bridges = {
+  #   "br0" = {
+  #     interfaces = [ "enp0s31f6" ];
+  #   };
+  # };
   # };
   # networking.interfaces.enp0s31f6.useDHCP = true;
   # networking.interfaces.enp0s31f6.ipv4.addresses = [
