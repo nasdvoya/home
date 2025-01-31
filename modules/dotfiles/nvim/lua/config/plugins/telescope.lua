@@ -50,9 +50,9 @@ return {
       ),
       vim.keymap.set(
         "n",
-        "<leader>sg",
+        "<leader>sh",
         function() require("telescope").extensions.git_file_history.git_file_history(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
-        { desc = "Search diagnostics" }
+        { desc = "Search git file git file history" }
       ),
       vim.keymap.set(
         "n",

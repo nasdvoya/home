@@ -31,6 +31,7 @@
     nixos-generators
     nixos-anywhere
     usbimager
+    zed-editor
     # Tooling / Languages
     jq
     yarn

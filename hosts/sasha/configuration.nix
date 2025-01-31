@@ -38,7 +38,7 @@
   };
 
   # Services
-  services.twingate.enable = true;
+  services.twingate.enable = false;
   services.dnsmasq.enable = true;
 
   services.xserver.enable = true;
