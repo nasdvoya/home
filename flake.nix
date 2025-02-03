@@ -46,6 +46,23 @@
       ];
     };
   in {
+    homeConfigurations = {
+      sasha = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./hosts/sasha/home.nix
+          {
+            home.username = "sasha";
+            home.homeDirectory = "/home/sasha";
+            programs.home-manager.enable = true;
+          }
+        ];
+        extraSpecialArgs = {
+          inherit inputs pkgs pkgs-unstable;
+          username = "sasha";
+        };
+      };
+    };
     nixosConfigurations = {
       sasha = lib.nixosSystem {
         system = system;

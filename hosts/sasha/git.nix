@@ -18,7 +18,7 @@
       };
     };
     signing = {
-      key = "4C9C9371782546C3"; # Correct GPG key ID
+      key = "BD027B68EA75F85D";
       signByDefault = true;
     };
 
