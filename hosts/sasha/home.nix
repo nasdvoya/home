@@ -22,7 +22,7 @@
     # file
     # qemu
     # quickemu
-    # neovim
+     neovim
     # tmux
     # pgcli
     # cachix
@@ -63,7 +63,7 @@
   ];
   unstablePkgs = with pkgs-unstable; [
     # google-chrome
-    # ghostty
+    ghostty
     # mqttui
     # commit-mono
     # mqtt-explorer
