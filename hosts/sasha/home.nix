@@ -77,7 +77,7 @@
     # tree
     # just
     # usbutils
-    # fzf
+    fzf
     # fd
     # ripgrep
     # gcc
