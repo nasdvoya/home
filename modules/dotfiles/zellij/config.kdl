@@ -206,7 +206,7 @@ keybinds clear-defaults=true {
             floating true
             move_to_focused_tab true
             cwd "/"
-            root_dirs "/home/sasha/Github/coreflux-community;/home/sasha/Github/nasdvoya;"
+            root_dirs "/home/sasha/Documents;/home/sasha/Github/nasdvoya;"
             session_layout "default"
         }; SwitchToMode "normal";
         }

@@ -44,8 +44,8 @@
     # just
     # usbutils
     fzf
-    # fd
-    # ripgrep
+    fd
+    ripgrep
     # gcc
     # devenv
     # msbuild
