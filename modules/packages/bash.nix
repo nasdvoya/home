@@ -15,7 +15,7 @@
       vim = "nvim";
       vi = "nvim";
       vit = "NVIM_APPNAME=nvimexample nvim";
-      rebuild = "sudo nixos-rebuild switch --flake /home/$(whoami)/Github/home#$(whoami)";
+      rebuild = "home-manager switch --flake /home/$(whoami)/Github/nasdvoya/home#$(whoami)";
       # Programs
       code = "code --ozone-platform=wayland";
       # SSH

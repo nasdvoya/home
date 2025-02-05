@@ -14,6 +14,10 @@
           source = ./zellij;
           recursive = true;
         };
+        ".config/wezterm/" = {
+          source = ./wezterm;
+          recursive = true;
+        };
       }
     ];
   };

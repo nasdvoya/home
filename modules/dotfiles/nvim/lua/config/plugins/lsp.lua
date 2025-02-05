@@ -44,7 +44,7 @@ return {
 
       -- Nix
       require('lspconfig')['nil_ls'].setup {
-        cmd = { "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/nil" },
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/nil" },
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {

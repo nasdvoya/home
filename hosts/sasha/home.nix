@@ -6,27 +6,9 @@
   pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
   stablePkgs = with pkgs; [
-    # xclip
-    # zip
-    # unzip
-    # zoxide
-    # ranger
-    # xdotool
-    # firefox
-    # appimage-run
-    # obsidian
-    # pinentry-gnome3
-    # libreoffice
-    # pax-utils
-    # evince
-    # file
-    # qemu
-    # quickemu
+    zoxide
+    ranger
      neovim
-    # tmux
-    # pgcli
-    # cachix
-    # icu
     # steam-run
     # nixos-generators
     # nixos-anywhere
@@ -36,22 +18,9 @@
     # jq
     # yarn
     # nodejs_22
-    # lua
-    # cmake
-    # gnumake
-    # rust-analyzer
+    lua
     # distrobox
-    # netcoredbg
     # patchelf
-    # (
-    #   with dotnetCorePackages;
-    #     combinePackages [
-    #       sdk_6_0
-    #       sdk_7_0
-    #       sdk_8_0
-    #       sdk_9_0
-    #     ]
-    # )
     # Fonts
     (pkgs.nerdfonts.override {
       fonts = [
@@ -62,12 +31,9 @@
     })
   ];
   unstablePkgs = with pkgs-unstable; [
-    # google-chrome
     ghostty
-    # mqttui
-    # commit-mono
-    # mqtt-explorer
-    # slack
+    mqtt-explorer
+    slack
     # jetbrains.rust-rover
     # jetbrains.rider
     # # Tooling
@@ -85,12 +51,12 @@
     # msbuild
     # roslyn
     # # Language Servers
-    # lua-language-server
+    lua-language-server
     # nodePackages.bash-language-server
     # roslyn-ls
     # vscode-langservers-extracted
     # tailwindcss-language-server
-    # nil
+    nil
     # unison-ucm
     # nixfmt-rfc-style
     # htmx-lsp
