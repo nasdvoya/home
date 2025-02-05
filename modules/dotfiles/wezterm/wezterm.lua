@@ -4,7 +4,7 @@ local config = {}
 local act = wezterm.action
 
 -- Default program (Bash as login shell)
-config.default_prog = { "bash" }
+config.default_prog = { "bash", "--login" }
 
 -- Cursor and window behavior
 config.default_cursor_style = "BlinkingBar"
