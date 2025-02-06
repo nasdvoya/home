@@ -9,18 +9,16 @@
     zoxide
     ranger
      neovim
-    # steam-run
-    # nixos-generators
-    # nixos-anywhere
-    # usbimager
-    # zed-editor
-    # # Tooling / Languages
-    # jq
-    # yarn
-    # nodejs_22
+    nixos-generators
+    nixos-anywhere
+    # Tooling / Languages
+    live-server
+    jq
+    yarn
+    nodejs_22
     lua
-    # distrobox
-    # patchelf
+    distrobox
+    patchelf
     # Fonts
     (pkgs.nerdfonts.override {
       fonts = [
@@ -31,42 +29,38 @@
     })
   ];
   unstablePkgs = with pkgs-unstable; [
-    ghostty
     mqtt-explorer
     slack
     # jetbrains.rust-rover
     # jetbrains.rider
-    # # Tooling
-    # htop-vim
-    # nix-serve
-    # live-server
-    # tree
-    # just
-    # usbutils
+    # Tooling
+    htop-vim
+    nix-serve
+    tree
+    just
     fzf
     fd
     ripgrep
-    # gcc
-    # devenv
-    # msbuild
-    # roslyn
-    # # Language Servers
+    devenv
+    msbuild
+    roslyn
+    # Language Servers
     lua-language-server
-    # nodePackages.bash-language-server
-    # roslyn-ls
-    # vscode-langservers-extracted
-    # tailwindcss-language-server
+    nodePackages.bash-language-server
+    roslyn-ls
+    vscode-langservers-extracted
+    tailwindcss-language-server
     nil
-    # unison-ucm
-    # nixfmt-rfc-style
-    # htmx-lsp
-    # # Code formatters
-    # alejandra
-    # stylua
-    # nodePackages.prettier
-    # prettierd
-    # shfmt
-    # csharpier
+    unison-ucm
+    nixfmt-rfc-style
+    htmx-lsp
+    # Code formatters
+    alejandra
+    stylua
+    nodePackages.prettier
+    prettierd
+    shfmt
+    csharpier
   ];
 in {
   imports = [
