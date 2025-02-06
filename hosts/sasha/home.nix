@@ -8,7 +8,7 @@
   stablePkgs = with pkgs; [
     zoxide
     ranger
-     neovim
+    neovim
     nixos-generators
     nixos-anywhere
     # Tooling / Languages
@@ -45,6 +45,7 @@
     msbuild
     roslyn
     # Language Servers
+    jdt-language-server
     lua-language-server
     nodePackages.bash-language-server
     roslyn-ls
