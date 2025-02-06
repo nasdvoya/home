@@ -1,6 +1,5 @@
 {...}: {
   programs.git = {
-    # Defaults
     enable = true;
     userName = "nasdvoya";
     userEmail = "nasdvoya@proton.me";
