@@ -33,7 +33,6 @@ return {
               runtimes = {
                 {
                   name = "JavaSE-21",
-                  path = "/opt/jdk-21",
                   default = true,
                 },
               },

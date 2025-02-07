@@ -23,6 +23,8 @@ export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export PATH="$HOME/.cargo/bin:$HOME/.yarn/bin:$PATH"
 export EDITOR=nvim
+export PATH=$PATH:/usr/local/go/bin
+
 complete -f -F _dotnet_bash_complete dotnet
 
 # Terminal tools
