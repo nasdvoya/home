@@ -24,6 +24,9 @@ export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export PATH="$HOME/.cargo/bin:$HOME/.yarn/bin:$PATH"
 export EDITOR=nvim
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$HOME/go/bin:$PATH
+export PATH="$HOME/.asdf/shims:$PATH"
+export PATH="$HOME/.asdf/bin:$PATH"
 
 complete -f -F _dotnet_bash_complete dotnet
 

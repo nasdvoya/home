@@ -9,6 +9,7 @@
     zoxide
     ranger
     neovim
+    google-chrome
     nixos-generators
     nixos-anywhere
     # Tooling / Languages
