@@ -56,6 +56,8 @@
     unison-ucm
     nixfmt-rfc-style
     htmx-lsp
+    elixir-ls
+    next-ls
     # Code formatters
     alejandra
     stylua

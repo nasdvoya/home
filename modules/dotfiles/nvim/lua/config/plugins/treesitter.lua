@@ -8,7 +8,7 @@ return {
           'c', 'cpp', 'bash', 'markdown', 'css', 'go', 'lua',
           'python', 'rust', 'tsx', 'javascript', 'typescript',
           'vimdoc', 'vim', 'c_sharp', 'json', 'nix', 'html',
-          'yaml', 'toml', 'dockerfile', 'just'
+          'yaml', 'toml', 'dockerfile', 'just', 'elixir'
         },
         sync_install = false,
         auto_install = false,

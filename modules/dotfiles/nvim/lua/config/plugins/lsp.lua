@@ -16,6 +16,16 @@ return {
         vim.api.nvim_buf_create_user_command(bufnum, "Format", function(_) vim.lsp.buf.format() end, { desc = "Format current byffer" })
       end
 
+      -- Elixir (ElixirLS)
+      require("lspconfig").elixirls.setup({
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/nextls" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        filetypes = { "elixir", "eelixir", "heex", "surface" },
+        root_dir = function(fname) return require("lspconfig.util").root_pattern("mix.exs")(fname) or vim.fn.getcwd() end,
+        single_file_support = true,
+      })
+
       -- Lua
       require("lspconfig").lua_ls.setup({
         capabilites = capabilities,
