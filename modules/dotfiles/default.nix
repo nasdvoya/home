@@ -18,6 +18,10 @@
           source = ./wezterm;
           recursive = true;
         };
+        ".config/tmux/" = {
+          source = ./tmux;
+          recursive = true;
+        };
       }
     ];
   };
