@@ -18,11 +18,9 @@ return {
 
       -- Elixir (ElixirLS)
       require("lspconfig").elixirls.setup({
-        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/nextls" },
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/elixir-ls" },
         capabilities = capabilities,
         on_attach = on_attach,
-        filetypes = { "elixir", "eelixir", "heex", "surface" },
-        root_dir = function(fname) return require("lspconfig.util").root_pattern("mix.exs")(fname) or vim.fn.getcwd() end,
         single_file_support = true,
       })
 
@@ -66,9 +64,6 @@ return {
           "django-html",
           "htmldjango",
           "edge",
-          "eelixir",
-          "elixir",
-          "ejs",
           "erb",
           "eruby",
           "gohtml",
