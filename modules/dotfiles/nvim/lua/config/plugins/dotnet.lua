@@ -5,9 +5,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     config = function()
       require("easy-dotnet").setup({})
-      vim.keymap.set("n", "<leader>cd", function()
-        vim.cmd("Dotnet")
-      end, { desc = "Dotnet commands" })
+      vim.keymap.set("n", "<leader>cd", function() vim.cmd("Dotnet") end, { desc = "Dotnet commands" })
     end,
   },
 
@@ -16,7 +14,8 @@ return {
     "seblj/roslyn.nvim",
     ft = "cs", -- Load only for C# files
     opts = {
-      exe = "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/Microsoft.CodeAnalysis.LanguageServer",
+      -- exe = "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/Microsoft.CodeAnalysis.LanguageServer",
+      exe = "Microsoft.CodeAnalysis.LanguageServer",
       args = {
         "--logLevel=Information",
         "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
@@ -56,5 +55,5 @@ return {
         },
       },
     },
-  }
+  },
 }
