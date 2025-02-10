@@ -19,8 +19,3 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 export PATH=$PATH:/usr/local/go/bin
-
-if [ -z "$TMUX" ]; then
-  tmux attach -d || tmux
-fi
-

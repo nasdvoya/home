@@ -12,6 +12,7 @@
     google-chrome
     nixos-generators
     nixos-anywhere
+    postgresql
     # Tooling / Languages
     live-server
     jq
