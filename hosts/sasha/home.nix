@@ -13,6 +13,7 @@
     nixos-generators
     nixos-anywhere
     postgresql
+    openvpn3
     # Tooling / Languages
     live-server
     jq
