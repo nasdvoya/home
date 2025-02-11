@@ -24,6 +24,13 @@ return {
         single_file_support = true,
       })
 
+      -- Svelte
+      require("lspconfig").svelte.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        single_file_support = true,
+      })
+
       -- Lua
       require("lspconfig").lua_ls.setup({
         capabilites = capabilities,

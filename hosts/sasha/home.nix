@@ -13,7 +13,6 @@
     nixos-generators
     nixos-anywhere
     postgresql
-    openvpn3
     # Tooling / Languages
     live-server
     jq
@@ -48,6 +47,7 @@
     msbuild
     roslyn
     # Language Servers
+    svelte-language-server
     jdt-language-server
     lua-language-server
     nodePackages.bash-language-server

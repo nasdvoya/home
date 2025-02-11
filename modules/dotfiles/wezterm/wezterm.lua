@@ -21,7 +21,7 @@ config.enable_tab_bar = false
 
 -- Font settings
 config.font_size = 11.5
-config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
+config.font = wezterm.font("Iosevka")
 -- Temp fix
 config.front_end = "WebGpu"
 

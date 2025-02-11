@@ -1,4 +1,4 @@
-[[ -f ~/.secrets ]] && . ~/.secrets
+[[ -f ~/.secrets/.env ]] && . ~/.secrets/.env
 # if running bash
 
 if [ -n "$BASH_VERSION" ]; then
