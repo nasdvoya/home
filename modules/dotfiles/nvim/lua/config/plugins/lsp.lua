@@ -101,7 +101,6 @@ return {
           "typescript",
           "typescriptreact",
           "vue",
-          "svelte",
           "templ",
         },
         root_dir = function(fname) return vim.fn.fnamemodify(fname, ":h") end,
@@ -136,7 +135,7 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {},
-        filetypes = { "html", "htmldjango", "htmljinja" },
+        filetypes = { "html", "svelte", "htmldjango", "htmljinja" },
       })
 
       -- Tailwind
