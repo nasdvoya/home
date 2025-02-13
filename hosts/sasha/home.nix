@@ -45,8 +45,10 @@
     ripgrep
     devenv
     msbuild
+    typescript
     roslyn
     # Language Servers
+    typescript-language-server
     svelte-language-server
     jdt-language-server
     lua-language-server
