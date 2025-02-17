@@ -5,9 +5,9 @@
     userName = "sasha";
     userEmail = "nasdvoya@proton.me";
     aliases = {
-      l = "log --pretty=format:'%C(#cccc00)%h %Cred%ad %Creset%<(60,trunc)%s%C(auto)%d %C(magenta)%<(15,trunc)%an' --date=format:'%y%m%d'";
+      l = "log --pretty=format:'%C(#cccc00)%h %Cred%ad %Creset%<(60,trunc)%s%C(auto)%d %C(magenta)%<(15,trunc)%an' --date=format:'%d/%m/%y %H:%M:%S'";
       dblame = "blame -w -C";
-      b = "branch --format='%(color:#cccc00)%(objectname:short) %(color:red)%(committerdate:short) %(color:bold white)%(refname:short)'";
+      b = "branch --format='%(color:#cccc00)%(objectname:short) %(color:red)%(committerdate:format:%d/%m/%y %H:%M:%S) %(color:bold white)%(refname:short)'";
     };
     extraConfig = {
       core = {
