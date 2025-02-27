@@ -6,6 +6,7 @@
   pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
   jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
   stablePkgs = with pkgs; [
+    lazydocker
     zoxide
     ranger
     neovim
