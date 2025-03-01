@@ -47,6 +47,7 @@
     };
   in {
     # Standalone
+
     homeConfigurations = {
       sasha = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -64,7 +65,9 @@
         };
       };
     };
+
     # Workhorse
+
     nixosConfigurations = {
       sasha = lib.nixosSystem {
         system = system;
@@ -82,7 +85,9 @@
           }
         ];
       };
+
       # WSL
+
       nasdvoya = lib.nixosSystem {
         system = system;
         specialArgs = {
