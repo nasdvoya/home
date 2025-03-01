@@ -8,6 +8,7 @@
   stablePkgs = with pkgs; [
     lazydocker
     zoxide
+    tmux
     ranger
     neovim
     google-chrome

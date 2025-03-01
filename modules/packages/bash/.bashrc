@@ -29,6 +29,7 @@ export PATH="$HOME/.asdf/shims:$PATH"
 export PATH="$HOME/.asdf/bin:$PATH"
 
 complete -f -F _dotnet_bash_complete dotnet
+eval "$(starship init bash)"
 
 # Terminal tools
 if [ -z "$DISTROBOX_ENTER_PATH" ]; then
