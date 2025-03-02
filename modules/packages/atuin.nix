@@ -1,6 +1,6 @@
 {...}: {
   programs.atuin = {
     enable = true;
-    enableBashIntegration = false;
+    enableBashIntegration = true;
   };
 }
