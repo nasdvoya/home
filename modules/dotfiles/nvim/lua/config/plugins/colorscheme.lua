@@ -1,8 +1,16 @@
 return {
   {
-    "savq/melange-nvim",
+    -- "savq/melange-nvim",
+    -- "EdenEast/nightfox.nvim",
+    "aktersnurra/no-clown-fiesta.nvim",
     config = function()
-      vim.cmd.colorscheme "melange"
-    end
-  }
+      -- require("no-clown-fiest").setup({
+      --   options = {
+      --     transparent = false,
+      --   },
+      -- })
+      -- vim.cmd.colorscheme "melange"
+      vim.cmd.colorscheme("no-clown-fiesta")
+    end,
+  },
 }

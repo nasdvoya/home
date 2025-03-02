@@ -14,7 +14,7 @@
     google-chrome
     nixos-generators
     nixos-anywhere
-    postgresql
+    postgresql_17
     # Tooling / Languages
     live-server
     jq
@@ -35,8 +35,6 @@
   unstablePkgs = with pkgs-unstable; [
     mqtt-explorer
     slack
-    # jetbrains.rust-rover
-    # jetbrains.rider
     # Tooling
     htop-vim
     nix-serve
