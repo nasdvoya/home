@@ -14,7 +14,7 @@
     jq
     yarn
     live-server
-    nodejs_22
+    nodejs_23
     patchelf
     nixos-generators
     nixos-anywhere
@@ -46,7 +46,6 @@
     # Code formatters
     alejandra
     nixfmt-rfc-style
-    stylua
     nodePackages.prettier
     prettierd
     shfmt
@@ -60,6 +59,7 @@
     })
   ];
   unstablePkgs = with pkgs-unstable; [
+    stylua
   ];
 in {
   imports = [

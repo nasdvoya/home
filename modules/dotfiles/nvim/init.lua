@@ -23,7 +23,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if not client then return end
 
-    -- Key mappings
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition", buffer = buf })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation", buffer = buf })
     vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, { desc = "Signature help", buffer = buf })

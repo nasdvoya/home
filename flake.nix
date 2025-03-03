@@ -38,16 +38,9 @@
     pkgs-unstable = import nixpkgs-unstable {
       system = system;
       config.allowUnfree = true;
-      config.permittedInsecurePackages = [
-        "dotnet-sdk-6.0.428"
-        "dotnet-runtime-6.0.36"
-        "dotnet-core-combined"
-        "dotnet-sdk-wrapped-6.0.428"
-      ];
     };
   in {
     # Standalone
-
     homeConfigurations = {
       sasha = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -65,9 +58,7 @@
         };
       };
     };
-
     # Workhorse
-
     nixosConfigurations = {
       sasha = lib.nixosSystem {
         system = system;
@@ -85,9 +76,7 @@
           }
         ];
       };
-
       # WSL
-
       nasdvoya = lib.nixosSystem {
         system = system;
         specialArgs = {
