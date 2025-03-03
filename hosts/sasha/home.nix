@@ -11,7 +11,6 @@
     tmux
     ranger
     neovim
-    google-chrome
     nixos-generators
     nixos-anywhere
     postgresql_17
@@ -21,21 +20,7 @@
     yarn
     nodejs_22
     lua
-    distrobox
     patchelf
-    # Fonts
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "FiraCode"
-        "VictorMono"
-      ];
-    })
-  ];
-  unstablePkgs = with pkgs-unstable; [
-    mqtt-explorer
-    slack
-    # Tooling
     htop-vim
     nix-serve
     tree
@@ -69,6 +54,16 @@
     prettierd
     shfmt
     csharpier
+    # Fonts
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "FiraCode"
+        "VictorMono"
+      ];
+    })
+  ];
+  unstablePkgs = with pkgs-unstable; [
   ];
 in {
   imports = [
