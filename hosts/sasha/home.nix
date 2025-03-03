@@ -3,26 +3,21 @@
   pkgs-unstable,
   ...
 }: let
-  pkgJson = builtins.fromJSON (builtins.readFile ./packages.json);
-  jsonPkgs = map (packageName: pkgs.${packageName}) pkgJson.packages;
   stablePkgs = with pkgs; [
     lazydocker
     zoxide
     tmux
     ranger
     neovim
-    nixos-generators
-    nixos-anywhere
     postgresql_17
-    # Tooling / Languages
-    live-server
+    # Tools
     jq
     yarn
+    live-server
     nodejs_22
-    lua
     patchelf
-    htop-vim
-    nix-serve
+    nixos-generators
+    nixos-anywhere
     tree
     just
     fzf
@@ -30,8 +25,12 @@
     ripgrep
     devenv
     msbuild
+    nix-serve
+    # Languages
+    lua
     typescript
-    roslyn
+    nil
+    unison-ucm
     # Language Servers
     typescript-language-server
     svelte-language-server
@@ -41,14 +40,12 @@
     roslyn-ls
     vscode-langservers-extracted
     tailwindcss-language-server
-    nil
-    unison-ucm
-    nixfmt-rfc-style
     htmx-lsp
     elixir-ls
     next-ls
     # Code formatters
     alejandra
+    nixfmt-rfc-style
     stylua
     nodePackages.prettier
     prettierd
@@ -58,7 +55,6 @@
     (pkgs.nerdfonts.override {
       fonts = [
         "JetBrainsMono"
-        "FiraCode"
         "VictorMono"
       ];
     })
@@ -69,7 +65,6 @@ in {
   imports = [
     ../../modules/packages
     ../../modules/dotfiles
-    ../../tools/script-builder.nix
     ./git.nix
   ];
 
@@ -78,7 +73,7 @@ in {
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-  home.packages = stablePkgs ++ unstablePkgs ++ jsonPkgs;
+  home.packages = stablePkgs ++ unstablePkgs;
 
   # Enable custom modules
   desktopEnvironment.enable = true;
