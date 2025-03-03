@@ -15,43 +15,43 @@ return {
       vim.keymap.set(
         "n",
         "<leader>sw",
-        function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Search open buffers" }
       ),
       vim.keymap.set(
         "n",
         "<leader><space>",
-        function() require("telescope.builtin").buffers(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope.builtin").buffers(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Search open buffers" }
       ),
       vim.keymap.set(
         "n",
         "<leader>sg",
-        function() require("telescope.builtin").live_grep(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope.builtin").live_grep(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Search grep" }
       ),
       vim.keymap.set(
         "n",
         "<leader>sf",
-        function() require("telescope.builtin").find_files(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope.builtin").find_files(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Search files" }
       ),
       vim.keymap.set(
         "n",
         "<leader>sc",
-        function() require("telescope.builtin").commands(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope.builtin").commands(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Search commands" }
       ),
       vim.keymap.set(
         "n",
         "<leader>sd",
-        function() require("telescope.builtin").diagnostics(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope.builtin").diagnostics(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Search diagnostics" }
       ),
       vim.keymap.set(
         "n",
         "<leader>sh",
-        function() require("telescope").extensions.git_file_history.git_file_history(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope").extensions.git_file_history.git_file_history(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Search git file git file history" }
       ),
       vim.keymap.set(
@@ -63,7 +63,7 @@ return {
       vim.keymap.set(
         "n",
         "<leader>sr",
-        function() require("telescope.builtin").lsp_references(require("telescope.themes").get_ivy({ border = false, winblend = 20, layout_config = { preview_cutoff = 50 } })) end,
+        function() require("telescope.builtin").lsp_references(require("telescope.themes").get_ivy({ border = false, layout_config = { preview_cutoff = 50 } })) end,
         { desc = "Find references" }
       ),
       vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "Search TODOs" }),

@@ -5,7 +5,6 @@
     logoutExtra = builtins.readFile ./bash/.bash_logout;
     bashrcExtra = builtins.readFile ./bash/.bashrc;
     shellAliases = {
-      ## Misc
       cp = "cp -i";
       mv = "mv -i";
       rm = "rm -i";
@@ -16,9 +15,8 @@
       vi = "nvim";
       vit = "NVIM_APPNAME=nvimexample nvim";
       rebuild = "home-manager switch --flake /home/$(whoami)/Github/nasdvoya/home#$(whoami)";
-      # Programs
-      # Git
       lg = "lazygit";
+      ld = "lazydocker";
       g = "git";
       ga = "git add";
       gaa = "git add *";
