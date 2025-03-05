@@ -9,6 +9,7 @@ return {
         cs = { "csharpier" },
         just = { "just" },
         nix = { "alejandra" },
+        python = { "black" },
         -- Web stuff
         javascript = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },

@@ -37,6 +37,13 @@ return {
         on_attach = on_attach,
       })
 
+      -- Python
+      require("lspconfig").pyright.setup({
+        capabilites = capabilities,
+        on_attach = on_attach,
+        cmd = { "pyright-langserver", "--stdio" },
+      })
+
       -- Java (jdtls)
       require("lspconfig").jdtls.setup({
         cmd = { "jdtls" },

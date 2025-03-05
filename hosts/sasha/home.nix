@@ -43,6 +43,7 @@
     htmx-lsp
     elixir-ls
     next-ls
+    pyright
     # Code formatters
     alejandra
     nixfmt-rfc-style
@@ -50,6 +51,7 @@
     prettierd
     shfmt
     csharpier
+    black # python
     # Fonts
     (pkgs.nerdfonts.override {
       fonts = [
