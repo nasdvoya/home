@@ -155,7 +155,7 @@ return {
 
       -- Rust
       require("lspconfig")["rust_analyzer"].setup({
-        cmd = { "rust-analyzer" },
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/rust-analyzer" },
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {

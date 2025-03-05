@@ -44,6 +44,7 @@
     elixir-ls
     next-ls
     pyright
+    rust-analyzer
     # Code formatters
     alejandra
     nixfmt-rfc-style
