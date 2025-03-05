@@ -5,6 +5,7 @@ vim.o.conceallevel = 0 -- Disable conceal
 
 vim.wo.number = true
 vim.wo.relativenumber = false
+vim.o.winblend = 20
 
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamed,unnamedplus" -- Enable access to System Clipboard
