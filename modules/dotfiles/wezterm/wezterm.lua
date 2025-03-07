@@ -63,7 +63,7 @@ config.colors = {
 }
 
 config.hide_mouse_cursor_when_typing = false
-config.color_scheme = 'Dark Pastel'
+config.color_scheme = 'Dark+'
 
 wezterm.on("gui-startup", function()
 	local _, _, window = mux.spawn_window({})
