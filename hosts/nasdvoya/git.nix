@@ -17,6 +17,7 @@
         sort = "-committerdate";
       };
     };
+
     signing = {
       key = "388BE66EA3ACEA9C";
       signByDefault = true;
