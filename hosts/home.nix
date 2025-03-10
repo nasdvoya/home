@@ -66,9 +66,8 @@
   ];
 in {
   imports = [
-    ../../modules/packages
-    ../../modules/dotfiles
-    ./git.nix
+    ../modules/packages
+    ../modules/dotfiles
   ];
 
   home.sessionVariables = {

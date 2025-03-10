@@ -40,7 +40,7 @@
       config.allowUnfree = true;
     };
   in {
-    # Standalone
+    # Standalone Sasha
     homeConfigurations = {
       sasha = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -55,6 +55,25 @@
         extraSpecialArgs = {
           inherit inputs pkgs pkgs-unstable;
           username = "sasha";
+        };
+      };
+    };
+    # Standalone Nasdvoya
+    homeConfigurations = {
+      nasdvoya = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./hosts/home.nix
+          ./hosts/nasdvoya/git.nix
+          {
+            home.username = "nasdvoya";
+            home.homeDirectory = "/home/nasdvoya";
+            programs.home-manager.enable = true;
+          }
+        ];
+        extraSpecialArgs = {
+          inherit inputs pkgs pkgs-unstable;
+          username = "nasdvoya";
         };
       };
     };
