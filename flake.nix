@@ -45,7 +45,8 @@
       sasha = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./hosts/sasha/home.nix
+          ./hosts/home.nix
+          ./hosts/sasha/git.nix
           {
             home.username = "sasha";
             home.homeDirectory = "/home/sasha";
