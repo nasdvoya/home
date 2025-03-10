@@ -17,6 +17,7 @@ return {
       -- exe = "/etc/profiles/per-user/" .. os.getenv("USER") .. "/bin/Microsoft.CodeAnalysis.LanguageServer",
       exe = "Microsoft.CodeAnalysis.LanguageServer",
       args = {
+        "--stdio",
         "--logLevel=Information",
         "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
       },
