@@ -16,13 +16,51 @@ return {
         vim.api.nvim_buf_create_user_command(bufnum, "Format", function(_) vim.lsp.buf.format() end, { desc = "Format current byffer" })
       end
 
-      -- Elixir (ElixirLS)
-      require("lspconfig").elixirls.setup({
-        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/elixir-ls" },
+     -- Elixir (ElixirLS)
+      if vim.fn.has("unix") == 1 then
+        require("lspconfig").elixirls.setup({
+          cmd = { os.getenv("HOME") .. "/.nix-profile/bin/elixir-ls" },
+          capabilities = capabilities,
+          on_attach = on_attach,
+          single_file_support = true,
+        })
+        
+      -- Nix
+      require("lspconfig")["nil_ls"].setup({
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/nil" },
         capabilities = capabilities,
         on_attach = on_attach,
+        settings = {
+          ["nil"] = {
+            formatting = {
+              command = { "nixfmt" },
+            },
+          },
+        },
+        filetypes = { "nix" },
+      })
+      
+      -- Rust
+      require("lspconfig")["rust_analyzer"].setup({
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/rust-analyzer" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ["rust-analyzer"] = {
+            diagnostics = {
+              enable = true,
+            },
+            cargo = {
+              allFeatures = true,
+            },
+          },
+        },
+        filetypes = { "rust" },
+        root_dir = function(fname) return require("lspconfig.util").root_pattern("Cargo.toml", "rust-project.json")(fname) or vim.fn.fnamemodify(fname, ":h") end,
         single_file_support = true,
       })
+
+      end
 
       -- Svelte
       require("lspconfig").svelte.setup({
@@ -114,21 +152,6 @@ return {
         single_file_support = true,
       })
 
-      -- Nix
-      require("lspconfig")["nil_ls"].setup({
-        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/nil" },
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = {
-          ["nil"] = {
-            formatting = {
-              command = { "nixfmt" },
-            },
-          },
-        },
-        filetypes = { "nix" },
-      })
-
       -- Bash
       require("lspconfig")["bashls"].setup({
         capabilities = capabilities,
@@ -151,26 +174,6 @@ return {
         on_attach = on_attach,
         settings = {},
         filetypes = { "html" },
-      })
-
-      -- Rust
-      require("lspconfig")["rust_analyzer"].setup({
-        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/rust-analyzer" },
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = {
-          ["rust-analyzer"] = {
-            diagnostics = {
-              enable = true,
-            },
-            cargo = {
-              allFeatures = true,
-            },
-          },
-        },
-        filetypes = { "rust" },
-        root_dir = function(fname) return require("lspconfig.util").root_pattern("Cargo.toml", "rust-project.json")(fname) or vim.fn.fnamemodify(fname, ":h") end,
-        single_file_support = true,
       })
     end,
   },
